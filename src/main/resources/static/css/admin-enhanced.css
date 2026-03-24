@@ -1,0 +1,653 @@
+/* ============================================================
+   NEXUS CLINIC – admin-enhanced.css
+   Complete admin dashboard styling: LTR + RTL, bilingual
+============================================================ */
+
+/* ============================================================
+   1. GLOBAL RESET FOR ADMIN
+============================================================ */
+body {
+    background: #f0f2f5;
+    margin: 0;
+    font-family: 'Montserrat', 'Cairo', sans-serif;
+}
+
+html[dir="rtl"] body,
+html[dir="rtl"] *:not(i):not(.fa):not([class*="fa-"]):not([class*="fas"]):not([class*="far"]):not([class*="fab"]) {
+    font-family: 'Cairo', 'Montserrat', sans-serif !important;
+}
+
+/* Strip all underlines globally in admin */
+.admin-sidebar a,
+.admin-sidebar button,
+.admin-main a,
+.admin-main button,
+.admin-nav-link,
+.sidebar-footer-link,
+.lang-pill,
+.lang-pill-sm {
+    text-decoration: none !important;
+}
+
+/* ============================================================
+   2. WRAPPER
+============================================================ */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* RTL wrapper — do NOT reverse flex; sidebar stays left, content right */
+/* Direction is handled by text-align and individual component overrides */
+
+/* ============================================================
+   3. SIDEBAR
+============================================================ */
+.admin-sidebar {
+    background: #111;
+    min-height: 100vh;
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(57,211,83,0.12);
+    display: flex;
+    flex-direction: column;
+}
+
+html[dir="rtl"] .admin-sidebar {
+    border-right: none;
+    border-left: 1px solid rgba(57,211,83,0.12);
+}
+
+/* ---- Sidebar Brand ---- */
+.admin-sidebar-brand {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(57,211,83,0.12);
+}
+
+.admin-sidebar-brand a {
+    display: block;
+}
+
+/* THE KEY FIX: no filter — logo-full-white.png is already white text on dark bg */
+.sidebar-logo {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    /* NO filter: it's already white on black, dark sidebar shows it correctly */
+}
+
+/* ---- Panel label ---- */
+.sidebar-panel-label {
+    padding: 10px 16px 8px;
+    border-bottom: 1px solid rgba(57,211,83,0.08);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.28);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+html[dir="rtl"] .sidebar-panel-label {
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.76rem;
+}
+
+/* ---- Section labels inside nav ---- */
+.sidebar-section-label {
+    padding: 10px 16px 4px;
+    font-size: 0.63rem;
+    color: rgba(255,255,255,0.22);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    user-select: none;
+}
+
+html[dir="rtl"] .sidebar-section-label {
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 0.72rem;
+}
+
+/* ---- Nav links ---- */
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 20px;
+    color: rgba(255,255,255,0.62) !important;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    background: transparent;
+    text-align: start;
+}
+
+html[dir="rtl"] .admin-nav-link {
+    border-left: none;
+    border-right: 3px solid transparent;
+    text-align: right;
+}
+
+.admin-nav-link i {
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+
+.admin-nav-link:hover {
+    background: rgba(57,211,83,0.07);
+    color: #39d353 !important;
+    border-left-color: rgba(57,211,83,0.4);
+}
+
+html[dir="rtl"] .admin-nav-link:hover {
+    border-left-color: transparent;
+    border-right-color: rgba(57,211,83,0.4);
+}
+
+.admin-nav-link.active {
+    background: rgba(57,211,83,0.1);
+    color: #39d353 !important;
+    border-left-color: #39d353;
+}
+
+html[dir="rtl"] .admin-nav-link.active {
+    border-left-color: transparent;
+    border-right-color: #39d353;
+}
+
+/* ---- Badge pills in nav ---- */
+.badge-pill-count {
+    margin-left: auto;
+    background: rgba(255,152,0,0.18);
+    color: #ff9800;
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    min-width: 20px;
+    text-align: center;
+}
+
+html[dir="rtl"] .badge-pill-count {
+    margin-left: 0;
+    margin-right: auto;
+    order: -1;  /* move to start in RTL flex */
+}
+
+.badge-pill-red {
+    background: rgba(244,67,54,0.18) !important;
+    color: #f44336 !important;
+}
+
+/* ============================================================
+   4. SIDEBAR FOOTER
+============================================================ */
+.sidebar-footer {
+    border-top: 1px solid rgba(57,211,83,0.1);
+    padding: 4px 0 6px;
+}
+
+/* Language switcher row */
+.sidebar-lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    font-size: 0.78rem;
+}
+
+.sidebar-lang-icon {
+    color: rgba(57,211,83,0.7);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.sidebar-lang-label {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.73rem;
+    font-weight: 600;
+}
+
+/* Language pills */
+.lang-pill,
+.lang-pill-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    color: rgba(255,255,255,0.45);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    line-height: 1.6;
+}
+
+.lang-pill:hover,
+.lang-pill-sm:hover {
+    color: #fff;
+    border-color: rgba(57,211,83,0.5);
+    background: rgba(57,211,83,0.1);
+}
+
+.lang-pill.lang-active,
+.lang-pill-sm.lang-active {
+    background: rgba(57,211,83,0.15);
+    color: #39d353;
+    border-color: rgba(57,211,83,0.5);
+}
+
+/* Topbar lang pills */
+.topbar-lang .lang-pill-sm {
+    color: rgba(0,0,0,0.5);
+    border-color: rgba(0,0,0,0.14);
+    font-size: 0.73rem;
+    font-weight: 600;
+}
+
+.topbar-lang .lang-pill-sm:hover {
+    color: #1a6e2e;
+    border-color: rgba(57,211,83,0.6);
+    background: rgba(57,211,83,0.08);
+}
+
+.topbar-lang .lang-pill-sm.lang-active {
+    background: rgba(57,211,83,0.12);
+    color: #1a6e2e;
+    border-color: rgba(57,211,83,0.5);
+}
+
+.sidebar-footer-link {
+    font-size: 0.8rem !important;
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+}
+
+/* ============================================================
+   5. MAIN CONTENT
+============================================================ */
+.admin-main {
+    flex: 1;
+    background: #f0f2f5;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ---- Topbar ---- */
+.admin-topbar {
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    padding: 13px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* admin-topbar stays LTR flex — title on left, controls on right */
+
+.admin-page-title {
+    font-size: 1.05rem;
+    color: #111;
+    font-weight: 700;
+}
+
+html[dir="rtl"] .admin-page-title {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+/* Mobile toggle button */
+.admin-mobile-toggle {
+    background: transparent;
+    border: 1.5px solid rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    color: #555;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.admin-mobile-toggle:hover {
+    background: rgba(57,211,83,0.08);
+    border-color: rgba(57,211,83,0.4);
+    color: #39d353;
+}
+
+/* Date */
+.topbar-date {
+    font-size: 0.76rem;
+    color: rgba(0,0,0,0.4);
+    font-weight: 500;
+}
+
+/* Avatar */
+.topbar-avatar {
+    width: 34px;
+    height: 34px;
+    background: rgba(57,211,83,0.1);
+    border: 1.5px solid rgba(57,211,83,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(57,211,83,0.7);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.topbar-avatar:hover {
+    background: rgba(57,211,83,0.18);
+}
+
+/* ---- Flash messages ---- */
+.flash-container {
+    padding: 0 24px;
+}
+
+.flash-container .alert {
+    margin-top: 16px;
+    margin-bottom: 0;
+    border-radius: 10px;
+}
+
+html[dir="rtl"] .flash-container .alert {
+    text-align: right;
+}
+
+html[dir="rtl"] .flash-container .alert i {
+    margin-right: 0 !important;
+    margin-left: 0.5rem;
+}
+
+/* ---- Content area ---- */
+.admin-content-area {
+    padding: 24px;
+    flex: 1;
+}
+
+/* ============================================================
+   6. MOBILE SIDEBAR
+============================================================ */
+@media (max-width: 991.98px) {
+    .admin-sidebar {
+        position: fixed;
+        top: 0;
+        left: -270px;
+        height: 100vh;
+        z-index: 1040;
+        transition: left 0.3s ease, right 0.3s ease;
+        width: 250px !important;
+        overflow-y: auto;
+    }
+
+    html[dir="rtl"] .admin-sidebar {
+        left: auto;
+        right: -270px;
+    }
+
+    .admin-sidebar.show {
+        left: 0;
+        box-shadow: 4px 0 32px rgba(0,0,0,0.35);
+    }
+
+    html[dir="rtl"] .admin-sidebar.show {
+        left: auto;
+        right: 0;
+        box-shadow: -4px 0 32px rgba(0,0,0,0.35);
+    }
+
+    .sidebar-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 1039;
+        backdrop-filter: blur(2px);
+    }
+
+    .sidebar-backdrop.show {
+        display: block;
+    }
+
+    .admin-content-area {
+        padding: 16px;
+    }
+
+    .admin-topbar {
+        padding: 10px 16px;
+    }
+}
+
+/* ============================================================
+   7. TABLES – RTL support
+============================================================ */
+html[dir="rtl"] .table th,
+html[dir="rtl"] .table td {
+    text-align: right;
+    direction: rtl;
+}
+
+html[dir="rtl"] .table th:first-child,
+html[dir="rtl"] .table td:first-child {
+    padding-right: 1.5rem !important;
+    padding-left: 0.75rem !important;
+}
+
+html[dir="rtl"] .table thead th {
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+/* ============================================================
+   8. FORMS – RTL support
+============================================================ */
+html[dir="rtl"] .form-label {
+    display: block;
+    text-align: right;
+}
+
+html[dir="rtl"] .form-control,
+html[dir="rtl"] .form-select,
+html[dir="rtl"] .nexus-input {
+    text-align: right;
+    direction: rtl;
+}
+
+html[dir="rtl"] .form-text,
+html[dir="rtl"] .invalid-feedback,
+html[dir="rtl"] .valid-feedback {
+    text-align: right;
+}
+
+html[dir="rtl"] .form-check {
+    padding-right: 1.5em;
+    padding-left: 0;
+}
+
+html[dir="rtl"] .form-check-input {
+    float: right;
+    margin-right: -1.5em;
+    margin-left: 0;
+}
+
+html[dir="rtl"] .form-switch .form-check-input {
+    margin-right: -2.5em;
+}
+
+/* Input groups RTL */
+html[dir="rtl"] .input-group {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .input-group .form-control {
+    border-radius: 0 0.375rem 0.375rem 0;
+    border-left: 1px solid #dee2e6;
+    border-right: 0;
+}
+
+html[dir="rtl"] .input-group-text:first-child {
+    border-radius: 0 0.375rem 0.375rem 0;
+    border-left: 0;
+}
+
+html[dir="rtl"] .input-group .btn:last-child {
+    border-radius: 0.375rem 0 0 0.375rem;
+}
+
+html[dir="rtl"] .input-group-text {
+    border-left: 1px solid #dee2e6;
+    border-right: 0;
+}
+
+/* ============================================================
+   9. CARDS & MODALS – RTL
+============================================================ */
+/* modal header/footer keep natural flex — Bootstrap handles RTL positioning */
+
+html[dir="rtl"] .card-header {
+    text-align: right;
+}
+
+html[dir="rtl"] .card-header h6 i {
+    margin-right: 0 !important;
+    margin-left: 0.5rem;
+}
+
+/* ============================================================
+   10. BUTTONS – No underline, consistent
+============================================================ */
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+    text-decoration: none !important;
+}
+
+html[dir="rtl"] .btn i.me-1,
+html[dir="rtl"] .btn i.me-2 {
+    margin-right: 0 !important;
+    margin-left: 0.35rem;
+}
+
+/* ============================================================
+   11. SPACING OVERRIDES – RTL margin/padding
+============================================================ */
+html[dir="rtl"] .me-1 { margin-right: 0 !important; margin-left: 0.25rem !important; }
+html[dir="rtl"] .me-2 { margin-right: 0 !important; margin-left: 0.5rem  !important; }
+html[dir="rtl"] .me-3 { margin-right: 0 !important; margin-left: 1rem   !important; }
+html[dir="rtl"] .ms-1 { margin-left:  0 !important; margin-right: 0.25rem !important; }
+html[dir="rtl"] .ms-2 { margin-left:  0 !important; margin-right: 0.5rem  !important; }
+html[dir="rtl"] .ms-3 { margin-left:  0 !important; margin-right: 1rem   !important; }
+html[dir="rtl"] .ms-auto { margin-left: 0 !important; margin-right: auto !important; }
+html[dir="rtl"] .me-auto { margin-right: 0 !important; margin-left: auto !important; }
+
+html[dir="rtl"] .ps-4 { padding-right: 1.5rem !important; padding-left: 0 !important; }
+html[dir="rtl"] .pe-4 { padding-left:  1.5rem !important; padding-right: 0 !important; }
+
+/* ============================================================
+   12. ALERTS – RTL
+============================================================ */
+html[dir="rtl"] .alert {
+    text-align: right;
+}
+
+html[dir="rtl"] .alert i {
+    margin-right: 0 !important;
+    margin-left: 0.5rem;
+}
+
+html[dir="rtl"] .btn-close {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+/* ============================================================
+   13. BADGES
+============================================================ */
+.badge-pending   { background: rgba(255,152,0,0.14);  color: #e65100;  padding: 4px 10px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; }
+.badge-confirmed { background: rgba(76,175,80,0.14);  color: #1b5e20;  padding: 4px 10px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; }
+.badge-completed { background: rgba(33,150,243,0.14); color: #0d47a1;  padding: 4px 10px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; }
+.badge-cancelled { background: rgba(244,67,54,0.14);  color: #b71c1c;  padding: 4px 10px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; }
+
+/* ============================================================
+   14. PASSWORD FORM SPECIFIC
+============================================================ */
+#strengthBar .progress {
+    background: rgba(0,0,0,0.08);
+}
+
+html[dir="rtl"] #matchIndicator {
+    text-align: right;
+}
+
+html[dir="rtl"] .input-group.pwd-group {
+    direction: rtl;
+}
+
+/* ============================================================
+   15. PAGINATION – RTL
+============================================================ */
+html[dir="rtl"] .card-footer .d-flex.gap-1 .fa-chevron-left,
+html[dir="rtl"] .card-footer .d-flex.gap-1 .fa-chevron-right {
+    transform: scaleX(-1);
+}
+
+/* ============================================================
+   16. STAT CARDS (dashboard)
+============================================================ */
+/* Stat cards in RTL — text right-aligned, icon stays on its side */
+html[dir="rtl"] .stat-card {
+    flex-direction: row;
+    text-align: right;
+}
+
+html[dir="rtl"] .stat-card .stat-icon {
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   17. BTN-XS helper
+============================================================ */
+.btn-xs {
+    padding: 3px 10px;
+    font-size: 0.74rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ============================================================
+   FONT AWESOME PROTECTION — always override any font-family on icons
+   Must be at end of file to have highest specificity
+============================================================ */
+i[class*="fa-"],
+.fa, .fas, .far, .fab, .fal, .fad,
+html[dir="rtl"] i[class*="fa-"],
+html[dir="rtl"] .fa,
+html[dir="rtl"] .fas,
+html[dir="rtl"] .far,
+html[dir="rtl"] .fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-rendering: auto !important;
+    -webkit-font-smoothing: antialiased !important;
+}

@@ -1,0 +1,7 @@
+[mysqld]
+# Security hardening
+local_infile = 0
+skip_show_database
+# Performance for small VM
+innodb_buffer_pool_size = 128M
+max_connections = 50

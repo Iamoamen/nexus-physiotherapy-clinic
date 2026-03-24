@@ -1,0 +1,67 @@
+<!-- pages/team.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container text-center">
+        <span class="section-tag-light" th:text="#{team.page.tag}">The Experts</span>
+        <h1 class="page-header-title text-white" th:text="#{team.page.title}">Meet Our Team</h1>
+        <p class="page-header-subtitle text-light" th:text="#{team.page.subtitle}">Dedicated professionals committed to your recovery.</p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-4">
+            <div th:each="t : ${therapists}" class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="team-card">
+                    <div class="team-photo-wrapper">
+                        <img th:src="${t.photoUrl ?: '/images/placeholder-therapist.jpg'}"
+                             th:alt="${#locale.language == 'ar'} ? ${t.nameAr} : ${t.nameEn}"
+                             class="team-photo"/>
+                        <div class="team-social">
+                            <a th:if="${t.instagramUrl}" th:href="${t.instagramUrl}" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a th:if="${t.linkedinUrl}" th:href="${t.linkedinUrl}" target="_blank">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4 class="team-name" th:text="${#locale.language == 'ar'} ? ${t.nameAr} : ${t.nameEn}">Name</h4>
+                        <p class="team-title" th:text="${#locale.language == 'ar'} ? ${t.titleAr} : ${t.titleEn}">Title</p>
+                        <span class="team-spec" th:text="${t.specialization}">Spec</span>
+                        <p class="text-muted small mt-3" th:if="${#locale.language == 'ar' and t.bioAr != null}"
+                           th:text="${#strings.abbreviate(t.bioAr, 160)}">Bio AR</p>
+                        <p class="text-muted small mt-3" th:if="${#locale.language != 'ar' and t.bioEn != null}"
+                           th:text="${#strings.abbreviate(t.bioEn, 160)}">Bio EN</p>
+                        <div th:if="${t.yearsExperience != null}" class="mt-2">
+                            <i class="fa-solid fa-briefcase text-nexus-green me-1"></i>
+                            <span class="small fw-bold">
+                                <span th:text="${t.yearsExperience}">5</span>+
+                                <span th:text="#{team.years}">years exp.</span>
+                            </span>
+                        </div>
+                        <div class="mt-3">
+                            <a th:href="@{/book}" class="btn btn-nexus-cta btn-sm">
+                                <i class="fa-regular fa-calendar-check me-1"></i>
+                                <span th:text="#{team.book}">Book with</span>
+                                <span th:text="${#locale.language == 'ar'} ? ${t.nameAr} : ${t.nameEn}">Name</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(therapists)}" class="text-center py-5 text-muted">
+            <p th:text="#{team.page.subtitle}">Team profiles coming soon.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<footer th:fragment="footer" class="nexus-footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- Brand Column -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-3">
+                        <img th:src="@{/images/logo-full-white.png}" alt="Nexus Clinic" class="footer-logo"/>
+                    </div>
+                    <p class="footer-tagline" th:text="#{footer.tagline}">#MOVEBEYOND</p>
+                    <p class="footer-desc" th:text="#{footer.desc}">Expert physiotherapy in Heliopolis, Cairo.</p>
+                    <div class="footer-social mt-3">
+                        <a href="https://instagram.com/nexus.physioclinic" target="_blank" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/201035411305" target="_blank" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://facebook.com/nexusclinic" target="_blank" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="footer-heading" th:text="#{footer.quick-links}">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a th:href="@{/}" th:text="#{nav.home}">Home</a></li>
+                        <li><a th:href="@{/about}" th:text="#{nav.about}">About</a></li>
+                        <li><a th:href="@{/services}" th:text="#{nav.services}">Services</a></li>
+                        <li><a th:href="@{/conditions}" th:text="#{nav.conditions}">Conditions</a></li>
+                        <li><a th:href="@{/team}" th:text="#{nav.team}">Our Team</a></li>
+                        <li><a th:href="@{/blog}" th:text="#{nav.blog}">Blog</a></li>
+                        <li><a th:href="@{/faq}" th:text="#{footer.faq}">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-heading" th:text="#{footer.services}">Services</h6>
+                    <ul class="footer-links">
+                        <li><a th:href="@{/services/sports-rehabilitation}" th:text="#{nav.sports-rehab}">Sports Rehabilitation</a></li>
+                        <li><a th:href="@{/services/post-surgical-rehab}">Post-Surgical Rehab</a></li>
+                        <li><a th:href="@{/services/manual-therapy}" th:text="#{nav.manual-therapy}">Manual Therapy</a></li>
+                        <li><a th:href="@{/services/dry-needling}">Dry Needling</a></li>
+                        <li><a th:href="@{/services/chronic-pain-management}" th:text="#{nav.chronic-pain}">Chronic Pain</a></li>
+                        <li><a th:href="@{/services/performance-training}" th:text="#{nav.performance}">Performance Training</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-heading" th:text="#{footer.contact}">Contact</h6>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span th:text="#{footer.address}">Heliopolis, Cairo, Egypt</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+201035411305">0103 541 1305</a>
+                        </li>
+                        <li>
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <a href="https://wa.me/201035411305" th:text="#{footer.whatsapp}">WhatsApp Us</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:info@nexusclinic.eg">info@nexusclinic.eg</a>
+                        </li>
+                    </ul>
+                    <a th:href="@{/book}" class="btn btn-nexus-cta mt-3 w-100">
+                        <i class="fa-regular fa-calendar-check me-1"></i>
+                        <span th:text="#{nav.book}">Book Appointment</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <p class="mb-0">&copy; <span th:text="${#dates.year(#dates.createNow())}">2025</span>
+               Nexus Clinic. <span th:text="#{footer.copyright}">All rights reserved.</span></p>
+            <div class="footer-bottom-links">
+                <a th:href="@{/faq}" th:text="#{footer.faq}">FAQ</a>
+                <a th:href="@{/contact}" th:text="#{footer.contact}">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

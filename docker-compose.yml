@@ -1,0 +1,104 @@
+# ============================================================
+# docker-compose.yml — Nexus Clinic Production Stack
+#
+# Usage:
+#   cp .env.example .env          # fill in real values first
+#   docker compose up -d
+#   docker compose logs -f app
+# ============================================================
+
+version: '3.9'
+
+services:
+
+  # ── MySQL Database ─────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: nexus-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}        # required — no default
+      MYSQL_DATABASE:      nexus_clinic
+      MYSQL_USER:          nexus_user
+      MYSQL_PASSWORD:      ${DB_PASS}             # required — no default
+    volumes:
+      - nexus_mysql_data:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d:ro       # custom MySQL config
+    # FIX: DO NOT expose port 3306 outside the Docker network.
+    # App connects via internal 'nexus-net', not from the host.
+    # ports: "3306:3306"  ← REMOVED — was exposing DB to the internet
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "nexus_user", "-p${DB_PASS}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - nexus-net
+
+  # ── Spring Boot Application ────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nexus-clinic-app:latest
+    container_name: nexus-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL:      jdbc:mysql://db:3306/nexus_clinic?useSSL=false&serverTimezone=Africa/Cairo&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: nexus_user
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASS}
+      SPRING_THYMELEAF_CACHE:     "true"
+      SPRING_MAIL_HOST:           ${MAIL_HOST:-smtp-relay.brevo.com}
+      SPRING_MAIL_PORT:           ${MAIL_PORT:-587}
+      SPRING_MAIL_USERNAME:       ${MAIL_USER}
+      SPRING_MAIL_PASSWORD:       ${MAIL_PASS}
+      APP_ADMIN_DEFAULT_PASSWORD: ${ADMIN_PASS}
+      LOGGING_LEVEL_COM_NEXUS:    WARN
+      SPRING_THYMELEAF_CACHE:     "true"
+      SERVER_SERVLET_SESSION_COOKIE_SECURE: "true"
+    # FIX: DO NOT bind 0.0.0.0:8080 — only allow access from Nginx container.
+    # No direct public access to Spring Boot port.
+    expose:
+      - "8080"             # visible only within nexus-net, not on host
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s    # give Flyway time to run migrations
+    networks:
+      - nexus-net
+
+  # ── Nginx Reverse Proxy ────────────────────────────────────
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: nexus-nginx
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nexus.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/certs/public:/etc/nginx/certs/public:ro   # Public site SSL
+      - ./nginx/certs/admin:/etc/nginx/certs/admin:ro     # Admin domain SSL
+      - nexus_nginx_logs:/var/log/nginx
+    networks:
+      - nexus-net
+
+volumes:
+  nexus_mysql_data:
+    driver: local
+  nexus_nginx_logs:
+    driver: local
+
+networks:
+  nexus-net:
+    driver: bridge
+    # Internal network — containers talk to each other, not to the internet

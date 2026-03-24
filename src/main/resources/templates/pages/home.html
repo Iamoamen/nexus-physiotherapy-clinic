@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<!-- HERO -->
+<section class="hero-section" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <div class="row min-vh-80 align-items-center">
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                <span class="hero-badge">
+                    <i class="fa-solid fa-circle-check me-1"></i>
+                    <span th:text="#{hero.badge}">Heliopolis · Established 2026</span>
+                </span>
+                <h1 class="hero-title">
+                    <span th:text="#{hero.title}">Move Beyond</span><br/>
+                    <span class="hero-accent" th:text="#{hero.accent}">Pain &amp; Limitation</span>
+                </h1>
+                <p class="hero-subtitle" th:utext="#{hero.subtitle}">Expert physiotherapy...</p>
+                <div class="hero-cta-group">
+                    <a th:href="@{/book}" class="btn btn-nexus-cta btn-lg me-3">
+                        <i class="fa-regular fa-calendar-check me-2"></i>
+                        <span th:text="#{hero.cta}">Book Appointment</span>
+                    </a>
+                    <a href="tel:+201035411305" class="btn btn-outline-light btn-lg">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        <span th:text="#{hero.call}">Call Us Now</span>
+                    </a>
+                </div>
+                <div class="hero-trust mt-4 d-flex flex-wrap gap-4">
+                    <div class="trust-item">
+                        <span class="trust-num">500+</span>
+                        <span class="trust-label" th:text="#{hero.trust.patients}">Patients Treated</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-num">10+</span>
+                        <span class="trust-label" th:text="#{hero.trust.services}">Services Offered</span>
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-num">98%</span>
+                        <span class="trust-label" th:text="#{hero.trust.satisfaction}">Patient Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar py-4">
+    <div class="container">
+        <div class="row g-3 text-center">
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
+                <i class="fa-solid fa-user-doctor trust-icon"></i>
+                <p class="trust-bar-text" th:text="#{trust.licensed}">Licensed Physiotherapists</p>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-award trust-icon"></i>
+                <p class="trust-bar-text" th:text="#{trust.evidence}">Evidence-Based Treatment</p>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-stopwatch trust-icon"></i>
+                <p class="trust-bar-text" th:text="#{trust.appointments}">Same-Week Appointments</p>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-language trust-icon"></i>
+                <p class="trust-bar-text" th:text="#{trust.bilingual}">Arabic &amp; English</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section section-padding" id="about">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="about-image-wrapper">
+                    <img src="/images/clinic-interior.jpg" alt="Nexus Clinic" class="about-img img-fluid"/>
+                    <div class="about-badge">
+                        <i class="fa-solid fa-trophy"></i>
+                        <div>
+                            <span class="d-block fw-bold" th:text="#{about.top-rated}">Top Rated</span>
+                            <span class="small" th:text="#{about.heliopolis}">Heliopolis 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <span class="section-tag" th:text="#{about.tag}">About Nexus Clinic</span>
+                <h2 class="section-title" th:text="#{about.title}">Precision Rehab. Real Results.</h2>
+                <p class="section-text" th:text="#{about.p1}">At Nexus Clinic...</p>
+                <p class="section-text" th:text="#{about.p2}">From elite athletes...</p>
+                <div class="row g-3 mt-2">
+                    <div class="col-sm-6">
+                        <div class="about-feature">
+                            <i class="fa-solid fa-circle-check text-nexus-green me-2"></i>
+                            <span th:text="#{about.f1}">Individualised Treatment Plans</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="about-feature">
+                            <i class="fa-solid fa-circle-check text-nexus-green me-2"></i>
+                            <span th:text="#{about.f2}">Advanced Rehabilitation Tech</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="about-feature">
+                            <i class="fa-solid fa-circle-check text-nexus-green me-2"></i>
+                            <span th:text="#{about.f3}">Sports &amp; Performance Focus</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="about-feature">
+                            <i class="fa-solid fa-circle-check text-nexus-green me-2"></i>
+                            <span th:text="#{about.f4}">Post-Surgical Rehabilitation</span>
+                        </div>
+                    </div>
+                </div>
+                <a th:href="@{/about}" class="btn btn-nexus-outline mt-4">
+                    <span th:text="#{about.learn}">Learn More About Us</span>
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section section-padding bg-light-dark" id="services">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{services.tag}">What We Offer</span>
+            <h2 class="section-title" th:text="#{services.title}">Our Services</h2>
+            <p class="section-subtitle" th:text="#{services.subtitle}">Comprehensive physiotherapy...</p>
+        </div>
+        <div class="row g-4">
+            <div th:each="service, iter : ${services}" class="col-lg-4 col-md-6"
+                 th:data-aos-delay="${iter.index * 100}" data-aos="fade-up">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i th:class="${service.iconClass ?: 'fa-solid fa-stethoscope'}"></i>
+                    </div>
+                    <h3 class="service-title"
+                        th:text="${#locale.language == 'ar'} ? ${service.nameAr} : ${service.nameEn}">Service Name</h3>
+                    <p class="service-desc"
+                       th:text="${#strings.abbreviate(#locale.language == 'ar' ? service.descriptionAr : service.descriptionEn, 120)}">Desc</p>
+                    <a th:href="@{/services/{slug}(slug=${service.slug})}" class="service-link">
+                        <span th:text="#{services.learn-more}">Learn More</span>
+                        <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a th:href="@{/services}" class="btn btn-nexus-outline">
+                <span th:text="#{services.view-all}">View All Services</span>
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CONDITIONS -->
+<section class="conditions-section section-padding" id="conditions">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{conditions.tag}">We Treat</span>
+            <h2 class="section-title" th:text="#{conditions.title}">Conditions We Specialise In</h2>
+        </div>
+        <div class="row g-3">
+            <div th:each="condition : ${conditions}" class="col-6 col-md-4 col-lg-3" data-aos="zoom-in">
+                <a th:href="@{/conditions/{slug}(slug=${condition.slug})}" class="condition-card">
+                    <i th:class="${condition.iconClass ?: 'fa-solid fa-person-walking'}"></i>
+                    <span th:text="${#locale.language == 'ar'} ? ${condition.nameAr} : ${condition.nameEn}">Condition</span>
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a th:href="@{/conditions}" class="btn btn-nexus-outline">
+                <span th:text="#{conditions.view-all}">All Conditions</span>
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- WHY NEXUS -->
+<section class="why-section section-padding bg-dark-nexus" id="why-us">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <span class="section-tag-light" th:text="#{why.tag}">Why Nexus?</span>
+                <h2 class="section-title text-white" th:text="#{why.title}">The Nexus Difference</h2>
+                <p class="text-light">
+                    <span th:text="#{why.desc}">We don't just treat symptoms.</span>
+                </p>
+                <a th:href="@{/book}" class="btn btn-nexus-cta mt-3">
+                    <span th:text="#{cta.book}">Book Appointment</span>
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="why-card">
+                            <div class="why-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                            <h4>Thorough Assessment</h4>
+                            <p>Every patient begins with a comprehensive clinical assessment.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="why-card">
+                            <div class="why-icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <h4>Progress Monitoring</h4>
+                            <p>We track your progress at every session and adjust your programme.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="why-card">
+                            <div class="why-icon"><i class="fa-solid fa-person-running"></i></div>
+                            <h4>Sport-Specific Rehab</h4>
+                            <p>Rehabilitation designed around your sport and performance demands.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="why-card">
+                            <div class="why-icon"><i class="fa-solid fa-comments"></i></div>
+                            <h4>Transparent Communication</h4>
+                            <p>We explain every step so you're always informed and empowered.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section section-padding">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{process.tag}">How It Works</span>
+            <h2 class="section-title" th:text="#{process.title}">Your Rehabilitation Journey</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="0">
+                <div class="process-step">
+                    <div class="process-num">01</div>
+                    <h4 th:text="#{process.step1.title}">ASSESSED</h4>
+                    <p th:text="#{process.step1.desc}">Comprehensive assessment.</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="process-step">
+                    <div class="process-num">02</div>
+                    <h4 th:text="#{process.step2.title}">PLANNED</h4>
+                    <p th:text="#{process.step2.desc}">Personalised plan.</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="process-step">
+                    <div class="process-num">03</div>
+                    <h4 th:text="#{process.step3.title}">GUIDED</h4>
+                    <p th:text="#{process.step3.desc}">Expert sessions.</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="process-step">
+                    <div class="process-num">04</div>
+                    <h4 th:text="#{process.step4.title}">MONITORED</h4>
+                    <p th:text="#{process.step4.desc}">Regular reviews.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section section-padding bg-light-dark" id="team" th:if="${not #lists.isEmpty(therapists)}">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{team.tag}">Meet the Experts</span>
+            <h2 class="section-title" th:text="#{team.title}">Our Therapists</h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div th:each="therapist : ${therapists}" class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="team-card">
+                    <div class="team-photo-wrapper">
+                        <img th:src="${therapist.photoUrl ?: '/images/placeholder-therapist.jpg'}"
+                             th:alt="${therapist.nameEn}" class="team-photo"/>
+                        <div class="team-social">
+                            <a th:href="${therapist.instagramUrl}" th:if="${therapist.instagramUrl != null}" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a th:href="${therapist.linkedinUrl}" th:if="${therapist.linkedinUrl != null}" target="_blank">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4 class="team-name" th:text="${#locale.language == 'ar'} ? ${therapist.nameAr} : ${therapist.nameEn}">Name</h4>
+                        <p class="team-title" th:text="${#locale.language == 'ar'} ? ${therapist.titleAr} : ${therapist.titleEn}">Title</p>
+                        <span class="team-spec" th:text="${therapist.specialization}">Specialization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a th:href="@{/team}" class="btn btn-nexus-outline" th:text="#{team.view-all}">Meet the Full Team</a>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section section-padding bg-dark-nexus" id="testimonials"
+         th:if="${not #lists.isEmpty(testimonials)}">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag-light" th:text="#{testimonials.tag}">Success Stories</span>
+            <h2 class="section-title text-white" th:text="#{testimonials.title}">What Our Patients Say</h2>
+        </div>
+        <div class="swiper testimonialSwiper">
+            <div class="swiper-wrapper">
+                <div th:each="t : ${testimonials}" class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i th:each="s : ${#numbers.sequence(1, t.rating)}" class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text"
+                           th:text="${#locale.language == 'ar' and t.contentAr != null} ? ${t.contentAr} : ${t.contentEn}">Quote</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"><i class="fa-solid fa-user"></i></div>
+                            <div>
+                                <strong th:text="${#locale.language == 'ar' and t.patientNameAr != null} ? ${t.patientNameAr} : ${t.patientName}">Name</strong>
+                                <span th:text="${t.condition}">Condition</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination testimonial-pagination"></div>
+            <div class="swiper-button-prev testimonial-prev"></div>
+            <div class="swiper-button-next testimonial-next"></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ PREVIEW -->
+<section class="faq-section section-padding" id="faq" th:if="${not #lists.isEmpty(faqs)}">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <span class="section-tag" th:text="#{faq.tag}">Got Questions?</span>
+                    <h2 class="section-title" th:text="#{faq.title}">Frequently Asked Questions</h2>
+                </div>
+                <div class="accordion nexus-accordion" id="faqAccordion">
+                    <div th:each="faq, iter : ${faqs}" class="accordion-item" data-aos="fade-up"
+                         th:data-aos-delay="${iter.index * 50}">
+                        <h3 class="accordion-header" th:id="|faqHead${iter.index}|">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse"
+                                    th:data-bs-target="|#faqBody${iter.index}|">
+                                <span th:text="${#locale.language == 'ar' and faq.questionAr != null} ? ${faq.questionAr} : ${faq.questionEn}">Question?</span>
+                            </button>
+                        </h3>
+                        <div th:id="|faqBody${iter.index}|" class="accordion-collapse collapse"
+                             data-bs-parent="#faqAccordion">
+                            <div class="accordion-body"
+                                 th:text="${#locale.language == 'ar' and faq.answerAr != null} ? ${faq.answerAr} : ${faq.answerEn}">Answer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a th:href="@{/faq}" class="btn btn-nexus-outline" th:text="#{faq.view-all}">View All FAQs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="blog-section section-padding bg-light-dark" th:if="${not #lists.isEmpty(recentPosts)}">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{blog.tag}">Knowledge Hub</span>
+            <h2 class="section-title" th:text="#{blog.title}">Latest Articles</h2>
+        </div>
+        <div class="row g-4">
+            <div th:each="post : ${recentPosts}" class="col-md-4" data-aos="fade-up">
+                <div class="blog-card">
+                    <div class="blog-img-wrapper">
+                        <img th:src="${post.coverImageUrl ?: '/images/blog-placeholder.jpg'}"
+                             th:alt="${post.titleEn}" class="blog-img"/>
+                        <span class="blog-category" th:text="${post.category}">Category</span>
+                    </div>
+                    <div class="blog-body">
+                        <p class="blog-date">
+                            <i class="fa-regular fa-calendar me-1"></i>
+                            <span th:text="${#temporals.format(post.publishedDate, 'dd MMM yyyy')}">Date</span>
+                        </p>
+                        <h4 class="blog-title"
+                            th:text="${#locale.language == 'ar' and post.titleAr != null} ? ${post.titleAr} : ${post.titleEn}">Title</h4>
+                        <p class="blog-summary"
+                           th:text="${#strings.abbreviate(#locale.language == 'ar' and post.summaryAr != null ? post.summaryAr : post.summaryEn, 100)}">Summary</p>
+                        <a th:href="@{/blog/{slug}(slug=${post.slug})}" class="blog-link">
+                            <span th:text="#{blog.read-more}">Read More</span>
+                            <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section section-padding">
+    <div class="container">
+        <div class="cta-box text-center" data-aos="zoom-in">
+            <span class="section-tag" th:text="#{cta.tag}">Ready to Start?</span>
+            <h2 class="cta-title" th:text="#{cta.title}">#MoveBeyond Starts Today</h2>
+            <p class="cta-text" th:text="#{cta.text}">Take the first step towards pain-free movement.</p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <a th:href="@{/book}" class="btn btn-nexus-cta btn-lg">
+                    <i class="fa-regular fa-calendar-check me-2"></i>
+                    <span th:text="#{cta.book}">Book Appointment</span>
+                </a>
+                <a href="https://wa.me/201035411305" target="_blank" class="btn btn-whatsapp btn-lg">
+                    <i class="fa-brands fa-whatsapp me-2"></i>
+                    <span th:text="#{topbar.whatsapp}">WhatsApp Us</span>
+                </a>
+                <a href="tel:+201035411305" class="btn btn-outline-dark btn-lg">
+                    <i class="fa-solid fa-phone me-2"></i>0103 541 1305
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.9!2d31.32!3d30.09!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA1JzI0LjAiTiAzMcKwMTknMTIuMCJF!5e0!3m2!1sen!2seg!4v1"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Nexus Clinic Location"></iframe>
+</section>
+
+</main>
+</html>

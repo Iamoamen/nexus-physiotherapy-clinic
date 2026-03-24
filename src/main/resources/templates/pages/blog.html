@@ -1,0 +1,51 @@
+<!-- pages/blog.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container text-center">
+        <span class="section-tag-light" th:text="#{blog.tag}">Knowledge Hub</span>
+        <h1 class="page-header-title text-white" th:text="#{blog.title}">Latest Articles</h1>
+        <p class="page-header-subtitle text-light" th:text="#{blog.subtitle}">Expert tips from our clinical team.</p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-4" th:if="${not #lists.isEmpty(posts)}">
+            <div th:each="post : ${posts}" class="col-md-4" data-aos="fade-up">
+                <div class="blog-card h-100">
+                    <div class="blog-img-wrapper">
+                        <img th:src="${post.coverImageUrl ?: '/images/blog-placeholder.jpg'}"
+                             th:alt="${post.titleEn}" class="blog-img"/>
+                        <span class="blog-category" th:if="${post.category}" th:text="${post.category}">Cat</span>
+                    </div>
+                    <div class="blog-body">
+                        <p class="blog-date">
+                            <i class="fa-regular fa-calendar me-1"></i>
+                            <span th:text="${post.publishedDate != null ? #temporals.format(post.publishedDate,'dd MMM yyyy') : ''}">Date</span>
+                        </p>
+                        <h4 class="blog-title"
+                            th:text="${#locale.language == 'ar' and post.titleAr != null} ? ${post.titleAr} : ${post.titleEn}">Title</h4>
+                        <p class="blog-summary"
+                           th:text="${#strings.abbreviate(#locale.language == 'ar' and post.summaryAr != null ? post.summaryAr : post.summaryEn ?: '', 110)}">Summary</p>
+                        <a th:href="@{/blog/{slug}(slug=${post.slug})}" class="blog-link">
+                            <span th:text="#{blog.read-more}">Read More</span>
+                            <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(posts)}" class="text-center py-5 text-muted">
+            <i class="fa-solid fa-newspaper fa-2x mb-3 d-block text-nexus-green"></i>
+            <p th:text="#{admin.empty.blog}">Blog posts coming soon.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+</html>

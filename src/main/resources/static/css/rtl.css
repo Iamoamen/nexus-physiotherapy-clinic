@@ -1,0 +1,181 @@
+/* ============================================================
+   NEXUS CLINIC – rtl.css
+   Right-to-Left overrides for Arabic language support
+============================================================ */
+
+/* ---- Base direction ---- */
+body[dir="rtl"],
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Montserrat', sans-serif;
+}
+
+/* ---- Topbar ---- */
+html[dir="rtl"] .topbar-left { text-align: right; }
+html[dir="rtl"] .topbar-right { text-align: left !important; }
+html[dir="rtl"] .topbar-link .me-1 { margin-right: 0 !important; margin-left: 0.25rem; }
+html[dir="rtl"] .topbar-link.me-3 { margin-right: 0 !important; margin-left: 1rem; }
+
+/* ---- Navbar ---- */
+html[dir="rtl"] .navbar-nav { padding-right: 0; }
+html[dir="rtl"] .navbar-nav.ms-auto { margin-right: auto !important; margin-left: 0 !important; }
+html[dir="rtl"] .nexus-dropdown { text-align: right; }
+html[dir="rtl"] .dropdown-menu { right: 0; left: auto; }
+
+/* ---- Logo ---- */
+html[dir="rtl"] .logo-sub { text-align: right; letter-spacing: 0.15em; }
+
+/* ---- Section typography ---- */
+html[dir="rtl"] .section-tag,
+html[dir="rtl"] .section-tag-light { letter-spacing: 0; }
+
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .cta-title { letter-spacing: 0; }
+
+/* ---- Hero ---- */
+html[dir="rtl"] .hero-subtitle { margin-right: 0; }
+html[dir="rtl"] .hero-cta-group .me-3 { margin-right: 0 !important; margin-left: 1rem; }
+html[dir="rtl"] .hero-accent::after { right: 0; left: 0; }
+
+/* ---- Trust icons ---- */
+html[dir="rtl"] .trust-icon { margin-right: 0; }
+
+/* ---- About ---- */
+html[dir="rtl"] .about-badge { right: auto; left: -20px; }
+html[dir="rtl"] .about-feature { border-left: none; border-right: 3px solid var(--nexus-green); }
+
+/* ---- Service / Why cards ---- */
+html[dir="rtl"] .service-card::before { right: 0; left: 0; }
+html[dir="rtl"] .service-link { flex-direction: row-reverse; }
+html[dir="rtl"] .service-link .ms-1 { margin-left: 0 !important; margin-right: 4px; }
+
+/* ---- Conditions ---- */
+html[dir="rtl"] .condition-card { text-align: center; }
+
+/* ---- Accordion ---- */
+html[dir="rtl"] .accordion-button::after {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* ---- Footer ---- */
+html[dir="rtl"] .footer-links a:hover { padding-left: 0; padding-right: 4px; }
+html[dir="rtl"] .footer-contact li { flex-direction: row-reverse; }
+html[dir="rtl"] .footer-contact a { text-align: right; }
+html[dir="rtl"] .footer-social { justify-content: flex-start; }
+
+/* ---- WhatsApp float ---- */
+html[dir="rtl"] .whatsapp-float {
+  right: auto;
+  left: 28px;
+}
+
+/* ---- Booking form ---- */
+html[dir="rtl"] .nexus-input { text-align: right; }
+html[dir="rtl"] .form-label { text-align: right; }
+html[dir="rtl"] .invalid-feedback { text-align: right; }
+
+/* ---- Breadcrumb ---- */
+html[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  content: "\\";
+  padding-right: 0;
+  padding-left: 8px;
+}
+
+/* ---- Admin sidebar ---- */
+html[dir="rtl"] .admin-nav-link {
+  border-left: none;
+  border-right: 3px solid transparent;
+}
+html[dir="rtl"] .admin-nav-link:hover,
+html[dir="rtl"] .admin-nav-link.active {
+  border-left: none;
+  border-right-color: var(--nexus-green);
+}
+html[dir="rtl"] .admin-sidebar { border-right: none; border-left: 1px solid rgba(57,211,83,0.12); }
+
+/* ---- Blog ---- */
+html[dir="rtl"] .blog-category { left: auto; right: 12px; }
+html[dir="rtl"] .blog-link { flex-direction: row-reverse; }
+
+/* ---- Team social ---- */
+html[dir="rtl"] .team-social { flex-direction: row-reverse; }
+
+/* ---- Icons in buttons ---- */
+html[dir="rtl"] .btn .me-1,
+html[dir="rtl"] .btn .me-2 {
+  margin-right: 0 !important;
+  margin-left: 0.5rem;
+}
+html[dir="rtl"] .btn .ms-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem;
+}
+
+/* ---- Process steps ---- */
+html[dir="rtl"] .process-step { direction: rtl; }
+
+/* ---- Working hours ---- */
+html[dir="rtl"] .working-hours-list li { flex-direction: row-reverse; }
+
+/* ---- Hero trust items ---- */
+html[dir="rtl"] .hero-trust { flex-direction: row-reverse; }
+
+/* ---- Tables in admin ---- */
+html[dir="rtl"] table { text-align: right; }
+html[dir="rtl"] th, html[dir="rtl"] td { text-align: right; }
+
+/* ---- Swiper RTL ---- */
+html[dir="rtl"] .swiper { direction: rtl; }
+
+/* ============================================================
+   RTL – Additional overrides
+============================================================ */
+
+/* Logo alignment */
+html[dir="rtl"] .navbar-brand { margin-right: 0; margin-left: auto; }
+html[dir="rtl"] .ms-auto { margin-right: auto !important; margin-left: 0 !important; }
+html[dir="rtl"] .me-auto { margin-left: auto !important; margin-right: 0 !important; }
+
+/* Language switcher */
+html[dir="rtl"] .lang-switcher { direction: ltr; }
+
+/* Forms */
+html[dir="rtl"] .form-select { background-position: left 0.75rem center; padding-right: 0.75rem; padding-left: 2.25rem; }
+
+/* Breadcrumb */
+html[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before { content: "\\"; float: right; padding-right: 0; padding-left: 0.5rem; }
+
+/* Process steps */
+html[dir="rtl"] .process-step { direction: rtl; }
+
+/* Admin sidebar RTL */
+html[dir="rtl"] .admin-sidebar { left: auto !important; right: 0; }
+html[dir="rtl"] .admin-main { margin-left: 0; }
+/* admin-nav-link RTL: icon left, text right-aligned — handled in admin-enhanced.css */
+html[dir="rtl"] .admin-nav-link { text-align: right; }
+/* admin-nav-link icon spacing handled in admin-enhanced.css */
+html[dir="rtl"] .admin-nav-link .ms-auto { margin-left: 0 !important; margin-right: auto !important; }
+
+/* Buttons icon spacing */
+html[dir="rtl"] .btn i.me-1,
+html[dir="rtl"] .btn i.me-2 { margin-right: 0 !important; margin-left: 0.25rem; }
+html[dir="rtl"] .btn i.me-2 { margin-left: 0.5rem; }
+
+/* Arrow icons in LTR content */
+html[dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+
+/* Footer */
+html[dir="rtl"] .footer-bottom { flex-direction: row-reverse; }
+html[dir="rtl"] .footer-bottom-links { direction: ltr; }
+
+/* Dropdowns */
+html[dir="rtl"] .dropdown-menu { left: auto !important; right: 0 !important; text-align: right; }
+
+/* Working hours list */
+html[dir="rtl"] .working-hours-list li { flex-direction: row-reverse; }
+
+/* Hero badge */
+html[dir="rtl"] .hero-badge { direction: rtl; }

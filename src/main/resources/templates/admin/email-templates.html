@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/layout :: adminLayout(adminContent=~{::section#content})}">
+<body>
+<section id="content" th:fragment="adminContent">
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white py-3 px-4 d-flex justify-content-between align-items-center">
+            <h6 class="mb-0 fw-bold" th:text="#{admin.email-templates}">Email Templates</h6>
+            <span class="text-muted small" th:text="#{admin.email-templates.hint}">
+                Edit the messages sent to patients automatically.
+            </span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-4" th:text="#{admin.col.name}">Template</th>
+                        <th th:text="#{admin.col.status}">Status</th>
+                        <th th:text="#{admin.col.date}">Last Updated</th>
+                        <th th:text="#{admin.col.actions}">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tpl : ${templates}">
+                        <td class="ps-4">
+                            <div class="fw-bold" th:text="${tpl.nameEn}">Template Name</div>
+                            <div class="text-muted small" th:text="${tpl.nameAr}">اسم القالب</div>
+                            <code class="small text-muted" th:text="${tpl.code}">code</code>
+                        </td>
+                        <td>
+                            <span th:if="${tpl.active}"
+                                  class="badge bg-success" th:text="#{admin.status.active}">Active</span>
+                            <span th:unless="${tpl.active}"
+                                  class="badge bg-secondary" th:text="#{admin.status.inactive}">Inactive</span>
+                        </td>
+                        <td class="text-muted small"
+                            th:text="${tpl.updatedAt != null} ? ${#temporals.format(tpl.updatedAt, 'dd MMM yyyy HH:mm')} : '—'">
+                            Date
+                        </td>
+                        <td>
+                            <a th:href="@{/admin/email-templates/{id}/edit(id=${tpl.id})}"
+                               class="btn btn-xs btn-outline-primary">
+                                <i class="fa-solid fa-pen me-1"></i>
+                                <span th:text="#{admin.action.edit}">Edit</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Placeholder reference -->
+    <div class="card border-0 shadow-sm mt-4">
+        <div class="card-header bg-white py-3 px-4">
+            <h6 class="mb-0 fw-bold" th:text="#{admin.email-templates.placeholders}">Available Placeholders</h6>
+        </div>
+        <div class="card-body p-4">
+            <p class="text-muted small mb-3" th:text="#{admin.email-templates.placeholders.hint}">
+                Use these in both subject and body. They are replaced automatically when the email is sent.
+            </p>
+            <div class="row g-2">
+                <div th:each="ph : ${ {'{{name}}','{{date}}','{{time}}','{{service}}','{{phone}}','{{email}}','{{message}}'} }"
+                     class="col-md-3">
+                    <code class="d-block p-2 rounded"
+                          style="background:var(--nexus-green-pale);color:var(--nexus-green-dim);font-size:0.82rem;"
+                          th:text="${ph}">{{name}}</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

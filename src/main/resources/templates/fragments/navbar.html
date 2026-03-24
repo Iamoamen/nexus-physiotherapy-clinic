@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark nexus-navbar sticky-top" id="mainNavbar">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo-white.png}" alt="Nexus Clinic" class="navbar-logo"/>
+        </a>
+
+        <!-- Mobile lang + Toggle -->
+        <div class="d-flex align-items-center d-lg-none ms-auto me-2">
+            <a th:href="@{/(lang=en)}" th:classappend="${#locale.language == 'en'} ? 'lang-active'" class="lang-toggle-mobile">EN</a>
+            <span class="text-muted mx-1 small">|</span>
+            <a th:href="@{/(lang=ar)}" th:classappend="${#locale.language == 'ar'} ? 'lang-active'" class="lang-toggle-mobile">ع</a>
+        </div>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}" th:classappend="${currentUri == '/'} ? active">
+                        <th:block th:text="#{nav.home}">Home</th:block>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}" th:classappend="${currentUri != null and currentUri.startsWith('/about')} ? active">
+                        <th:block th:text="#{nav.about}">About</th:block>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                       th:classappend="${currentUri != null and currentUri.startsWith('/services')} ? active">
+                        <th:block th:text="#{nav.services}">Services</th:block>
+                    </a>
+                    <ul class="dropdown-menu nexus-dropdown">
+                        <li><a class="dropdown-item" th:href="@{/services}" th:text="#{nav.all-services}">All Services</a></li>
+                        <li><hr class="dropdown-divider"/></li>
+                        <li><a class="dropdown-item" th:href="@{/services/sports-rehabilitation}" th:text="#{nav.sports-rehab}">Sports Rehab</a></li>
+                        <li><a class="dropdown-item" th:href="@{/services/manual-therapy}" th:text="#{nav.manual-therapy}">Manual Therapy</a></li>
+                        <li><a class="dropdown-item" th:href="@{/services/chronic-pain-management}" th:text="#{nav.chronic-pain}">Chronic Pain</a></li>
+                        <li><a class="dropdown-item" th:href="@{/services/performance-training}" th:text="#{nav.performance}">Performance Training</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/conditions}" th:classappend="${currentUri != null and currentUri.startsWith('/conditions')} ? active">
+                        <th:block th:text="#{nav.conditions}">Conditions</th:block>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/team}" th:classappend="${currentUri != null and currentUri.startsWith('/team')} ? active">
+                        <th:block th:text="#{nav.team}">Our Team</th:block>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/blog}" th:classappend="${currentUri != null and currentUri.startsWith('/blog')} ? active"
+                       th:text="#{nav.blog}">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact}" th:classappend="${currentUri != null and currentUri.startsWith('/contact')} ? active">
+                        <th:block th:text="#{nav.contact}">Contact</th:block>
+                    </a>
+                </li>
+                <!-- CTA Book Button -->
+                <li class="nav-item ms-lg-2">
+                    <a class="btn btn-nexus-cta" th:href="@{/book}">
+                        <i class="fa-regular fa-calendar-check me-1"></i>
+                        <th:block th:text="#{nav.book}">Book Appointment</th:block>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

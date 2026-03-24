@@ -1,0 +1,41 @@
+<!-- pages/conditions.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container text-center">
+        <span class="section-tag-light" th:text="#{conditions.page.tag}">We Treat</span>
+        <h1 class="page-header-title text-white" th:text="#{conditions.page.title}">Conditions We Treat</h1>
+        <p class="page-header-subtitle text-light" th:text="#{conditions.page.subtitle}">Our therapists handle a wide range of conditions.</p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div th:each="area, areaIter : ${conditionsByArea}" class="mb-5" data-aos="fade-up">
+            <h3 class="mb-4 fw-bold text-capitalize" th:text="${#strings.capitalize(area.key)}">Area</h3>
+            <div class="row g-3">
+                <div th:each="condition : ${area.value}" class="col-6 col-md-4 col-lg-3">
+                    <a th:href="@{/book}" class="condition-card">
+                        <i th:class="${condition.iconClass ?: 'fa-solid fa-person-walking'}"></i>
+                        <span th:text="${#locale.language == 'ar' and condition.nameAr != null} ? ${condition.nameAr} : ${condition.nameEn}">Condition</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5 p-5 rounded-4" style="background:var(--nexus-off-white);">
+            <h3 class="mb-3" th:text="#{faq.still-questions}">Don't see your condition?</h3>
+            <p class="text-muted mb-4" th:text="#{conditions.page.subtitle}">Contact us — we treat a wide range of conditions.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a th:href="@{/contact}" class="btn btn-nexus-outline" th:text="#{contact.submit}">Contact Us</a>
+                <a th:href="@{/book}" class="btn btn-nexus-cta" th:text="#{about.btn.book}">Book Assessment</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+</html>

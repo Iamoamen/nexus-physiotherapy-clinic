@@ -1,0 +1,70 @@
+<!-- booking-success.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+<section class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center" data-aos="zoom-in">
+                <div style="width:80px;height:80px;background:var(--nexus-green-pale);border:2px solid var(--nexus-green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:2rem;color:var(--nexus-green);">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <span class="section-tag" th:text="#{success.tag}">All Done!</span>
+                <h1 class="section-title" th:text="#{success.title}">Appointment Requested!</h1>
+                <p class="section-text" th:text="#{success.subtitle}">
+                    
+                </p>
+
+                <!-- Appointment summary if available -->
+                <div th:if="${appointment != null}" class="booking-info-card text-start mt-4 mb-4">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <small class="text-muted d-block" th:text="#{success.name}">Patient Name</small>
+                            <strong th:text="${appointment.patientName}">Name</strong>
+                        </div>
+                        <div class="col-6" th:if="${appointment.service != null}">
+                            <small class="text-muted d-block" th:text="#{success.service}">Service</small>
+                            <strong th:text="${#locale.language == 'ar'} ? ${appointment.service.nameAr} : ${appointment.service.nameEn}">Service</strong>
+                        </div>
+                        <div class="col-6" th:if="${appointment.preferredDate != null}">
+                            <small class="text-muted d-block" th:text="#{success.date}">Date</small>
+                            <strong th:text="${appointment.preferredDate}">Date</strong>
+                        </div>
+                        <div class="col-6" th:if="${appointment.preferredTime != null}">
+                            <small class="text-muted d-block" th:text="#{success.time}">Time</small>
+                            <strong th:text="${appointment.preferredTime}">Time</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What's Next -->
+                <div class="text-start mt-3 mb-4 booking-info-card">
+                    <h6 class="fw-bold mb-3" th:text="#{success.next}">What's Next?</h6>
+                    <ol class="list-unstyled mb-0" style="display:flex;flex-direction:column;gap:0.6rem;">
+                        <li><i class="fa-solid fa-phone text-nexus-green me-2"></i><span th:text="#{success.step1}">Our team will call you to confirm</span></li>
+                        <li><i class="fa-brands fa-whatsapp text-nexus-green me-2"></i><span th:text="#{success.step2}">You'll receive a WhatsApp confirmation</span></li>
+                        <li><i class="fa-solid fa-clock text-nexus-green me-2"></i><span th:text="#{success.step3}">Arrive 10 minutes early for your first visit</span></li>
+                    </ol>
+                </div>
+
+                <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+                    <a th:href="@{/book}" class="btn btn-nexus-outline">
+                        <i class="fa-regular fa-calendar-plus me-2"></i>
+                        <span th:text="#{success.book-another}">Book Another</span>
+                    </a>
+                    <a th:href="@{/}" class="btn btn-nexus-cta">
+                        <i class="fa-solid fa-house me-2"></i>
+                        <span th:text="#{success.go-home}">Back to Home</span>
+                    </a>
+                    <a href="https://wa.me/201035411305" target="_blank" class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp me-2"></i>
+                        <span th:text="#{topbar.whatsapp}">WhatsApp Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+</html>

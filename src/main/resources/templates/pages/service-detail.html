@@ -1,0 +1,149 @@
+<!-- pages/service-detail.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8" data-aos="fade-right">
+                <span class="section-tag-light"
+                      th:text="${#locale.language == 'ar' and service.nameAr != null} ? ${service.nameAr} : ${service.nameEn}">Service</span>
+                <h1 class="page-header-title text-white"
+                    th:text="${#locale.language == 'ar' and service.nameAr != null} ? ${service.nameAr} : ${service.nameEn}">Service Name</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/}" th:text="#{breadcrumb.home}">Home</a></li>
+                        <li class="breadcrumb-item"><a th:href="@{/services}" th:text="#{breadcrumb.services}">Services</a></li>
+                        <li class="breadcrumb-item active"
+                            th:text="${#locale.language == 'ar' and service.nameAr != null} ? ${service.nameAr} : ${service.nameEn}">Service</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Main Content -->
+            <div class="col-lg-8" data-aos="fade-right">
+
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div style="width:56px;height:56px;background:var(--nexus-green-pale);border:1px solid var(--nexus-border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--nexus-green);font-size:1.4rem;">
+                        <i th:class="${service.iconClass ?: 'fa-solid fa-stethoscope'}"></i>
+                    </div>
+                    <div>
+                        <h2 class="mb-0"
+                            th:text="${#locale.language == 'ar' and service.nameAr != null} ? ${service.nameAr} : ${service.nameEn}">Service</h2>
+                        <span th:if="${service.priceFrom != null}" class="text-nexus-green fw-bold small">
+                            <span th:text="#{service.starting-from}">Starting from EGP</span>
+                            <span th:text="${service.priceFrom}">0</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="service-content"
+                     th:utext="${#locale.language == 'ar' and service.descriptionAr != null} ? ${service.descriptionAr} : ${service.descriptionEn}">
+                    <p>Full service description.</p>
+                </div>
+
+                <!-- What to Expect -->
+                <div class="mt-5 p-4 rounded-4" style="background:var(--nexus-off-white);border:1px solid rgba(0,0,0,0.07);">
+                    <h4 class="fw-bold mb-3">
+                        <i class="fa-solid fa-circle-question text-nexus-green me-2"></i>
+                        <span th:text="#{service.what-to-expect}">What to Expect</span>
+                    </h4>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-circle-check text-nexus-green mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong th:text="#{service.expect.e1.title}">Initial Assessment</strong>
+                                    <p class="small text-muted mb-0" th:text="#{service.expect.e1.desc}">Comprehensive evaluation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-circle-check text-nexus-green mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong th:text="#{service.expect.e2.title}">Personalised Plan</strong>
+                                    <p class="small text-muted mb-0" th:text="#{service.expect.e2.desc}">Evidence-based programme.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-circle-check text-nexus-green mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong th:text="#{service.expect.e3.title}">Hands-On Treatment</strong>
+                                    <p class="small text-muted mb-0" th:text="#{service.expect.e3.desc}">One-on-one sessions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex gap-3">
+                                <i class="fa-solid fa-circle-check text-nexus-green mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <strong th:text="#{service.expect.e4.title}">Progress Tracking</strong>
+                                    <p class="small text-muted mb-0" th:text="#{service.expect.e4.desc}">Regular reviews.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4" data-aos="fade-left">
+                <div class="booking-info-card mb-4 text-center"
+                     style="background:var(--nexus-dark);border-color:rgba(57,211,83,0.2);">
+                    <i class="fa-regular fa-calendar-check fa-2x text-nexus-green mb-3 d-block"></i>
+                    <h5 class="text-white" th:text="#{service.ready}">Ready to Start?</h5>
+                    <p class="text-light small mb-3" th:text="#{service.ready.sub}">Book an appointment.</p>
+                    <a th:href="@{/book}" class="btn btn-nexus-cta w-100 mb-2">
+                        <i class="fa-regular fa-calendar-check me-1"></i>
+                        <span th:text="#{nav.book}">Book Appointment</span>
+                    </a>
+                    <a href="https://wa.me/201035411305" target="_blank" class="btn btn-whatsapp w-100">
+                        <i class="fa-brands fa-whatsapp me-1"></i>
+                        <span th:text="#{topbar.whatsapp}">WhatsApp Us</span>
+                    </a>
+                </div>
+
+                <div class="booking-info-card mb-4">
+                    <h6 class="fw-bold mb-3">
+                        <i class="fa-solid fa-clock text-nexus-green me-2"></i>
+                        <span th:text="#{booking.hours}">Working Hours</span>
+                    </h6>
+                    <ul class="working-hours-list">
+                        <li><span th:text="#{day.MONDAY} + ' – ' + #{day.THURSDAY}">Mon – Thu</span><span>9AM – 8PM</span></li>
+                        <li><span th:text="#{day.FRIDAY}">Friday</span><span>9AM – 1PM</span></li>
+                        <li><span th:text="#{day.SATURDAY}">Saturday</span><span>9AM – 5PM</span></li>
+                        <li class="closed"><span th:text="#{day.SUNDAY}">Sunday</span><span th:text="#{day.closed}">Closed</span></li>
+                    </ul>
+                </div>
+
+                <div class="booking-info-card">
+                    <h6 class="fw-bold mb-3">
+                        <i class="fa-solid fa-list text-nexus-green me-2"></i>
+                        <span th:text="#{service.other}">Other Services</span>
+                    </h6>
+                    <ul class="footer-links">
+                        <li><a th:href="@{/services/sports-rehabilitation}" th:text="#{nav.sports-rehab}">Sports Rehab</a></li>
+                        <li><a th:href="@{/services/manual-therapy}" th:text="#{nav.manual-therapy}">Manual Therapy</a></li>
+                        <li><a th:href="@{/services/chronic-pain-management}" th:text="#{nav.chronic-pain}">Chronic Pain</a></li>
+                        <li><a th:href="@{/services/performance-training}" th:text="#{nav.performance}">Performance</a></li>
+                        <li><a th:href="@{/services}" class="text-nexus-green fw-bold" th:text="#{services.view-all}">View All</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+</html>

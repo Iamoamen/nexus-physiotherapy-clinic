@@ -1,0 +1,48 @@
+<!-- pages/services.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container text-center">
+        <span class="section-tag-light" th:text="#{services.page.tag}">What We Offer</span>
+        <h1 class="page-header-title text-white" th:text="#{services.page.title}">Our Services</h1>
+        <p class="page-header-subtitle text-light" th:text="#{services.page.subtitle}">Comprehensive physiotherapy designed around your goals.</p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-4">
+            <div th:each="service, iter : ${services}" class="col-lg-4 col-md-6"
+                 data-aos="fade-up" th:attr="data-aos-delay=${iter.index * 80}">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        <i th:class="${service.iconClass ?: 'fa-solid fa-stethoscope'}"></i>
+                    </div>
+                    <h3 class="service-title"
+                        th:text="${#locale.language == 'ar' and service.nameAr != null} ? ${service.nameAr} : ${service.nameEn}">Service</h3>
+                    <p class="service-desc"
+                       th:text="${#locale.language == 'ar' and service.descriptionAr != null} ? ${service.descriptionAr} : ${service.descriptionEn}">Desc</p>
+                    <a th:href="@{/services/{slug}(slug=${service.slug})}" class="service-link">
+                        <span th:text="#{services.learn-more}">Learn More</span>
+                        <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5 p-5 rounded-4" style="background:var(--nexus-dark);">
+            <h3 class="text-white mb-3" th:text="#{about.btn.book}">Book Assessment</h3>
+            <p class="text-light mb-4" th:text="#{services.subtitle}">Comprehensive physiotherapy tailored to your needs.</p>
+            <a th:href="@{/book}" class="btn btn-nexus-cta btn-lg">
+                <i class="fa-regular fa-calendar-check me-2"></i>
+                <span th:text="#{cta.book}">Book Appointment</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+</main>
+</html>

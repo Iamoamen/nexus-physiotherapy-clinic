@@ -1,0 +1,166 @@
+<!-- pages/pricing.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container text-center">
+        <span class="section-tag-light" th:text="#{pricing.tag}">Transparent Pricing</span>
+        <h1 class="page-header-title text-white" th:text="#{pricing.title}">Packages &amp; Pricing</h1>
+        <p class="page-header-subtitle text-light" th:text="#{pricing.subtitle}">Clear, honest pricing with no hidden fees.</p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+
+        <!-- Individual Sessions -->
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{pricing.individual.tag}">Individual Sessions</span>
+            <h2 class="section-title" th:text="#{pricing.individual.title}">Single Session Rates</h2>
+        </div>
+
+        <div class="row g-4 justify-content-center mb-5">
+            <!-- Assessment -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">🔍</div>
+                        <h3 class="pricing-name" th:text="#{pricing.assessment.name}">Initial Assessment</h3>
+                        <p class="pricing-desc" th:text="#{pricing.assessment.desc}">Comprehensive 75-min evaluation</p>
+                    </div>
+                    <div class="pricing-body">
+                        <div class="pricing-price">
+                            <span class="price-currency">EGP</span>
+                            <span class="price-amount">800</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.assessment.f1}">Full clinical assessment</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.assessment.f2}">Movement screening</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.assessment.f3}">Personalised plan</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.assessment.f4}">Written report</span></li>
+                        </ul>
+                        <a th:href="@{/book}" class="btn btn-nexus-cta w-100" th:text="#{pricing.assessment.btn}">Book Assessment</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Follow-up -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="pricing-card pricing-featured">
+                    <div class="pricing-badge" th:text="#{pricing.most-popular}">Most Popular</div>
+                    <div class="pricing-header">
+                        <div class="pricing-icon">🏃</div>
+                        <h3 class="pricing-name" th:text="#{pricing.followup.name}">Follow-Up Session</h3>
+                        <p class="pricing-desc" th:text="#{pricing.followup.desc}">One-on-one 45-min treatment</p>
+                    </div>
+                    <div class="pricing-body">
+                        <div class="pricing-price">
+                            <span class="price-currency">EGP</span>
+                            <span class="price-amount">600</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.followup.f1}">Hands-on physiotherapy</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.followup.f2}">Exercise prescription</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.followup.f3}">Progress review</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.followup.f4}">Home exercise plan</span></li>
+                        </ul>
+                        <a th:href="@{/book}" class="btn btn-nexus-cta w-100" th:text="#{pricing.followup.btn}">Book Session</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Visit -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">🏠</div>
+                        <h3 class="pricing-name" th:text="#{pricing.home.name}">Home Visit</h3>
+                        <p class="pricing-desc" th:text="#{pricing.home.desc}">Treatment at your location</p>
+                    </div>
+                    <div class="pricing-body">
+                        <div class="pricing-price">
+                            <span class="price-currency">EGP</span>
+                            <span class="price-amount">900</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.home.f1}">Clinic-quality at home</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.home.f2}">Within Heliopolis</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.home.f3}">Flexible scheduling</span></li>
+                            <li><i class="fa-solid fa-check text-nexus-green me-2"></i><span th:text="#{pricing.home.f4}">All equipment provided</span></li>
+                        </ul>
+                        <a th:href="@{/book}" class="btn btn-nexus-cta w-100" th:text="#{pricing.home.btn}">Book Home Visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Packages -->
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{pricing.packages.tag}">Best Value</span>
+            <h2 class="section-title" th:text="#{pricing.packages.title}">Session Packages</h2>
+            <p class="section-subtitle" th:text="#{pricing.packages.subtitle}">Save more with multi-session bundles.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="package-card">
+                    <div class="pkg-sessions">5</div>
+                    <div class="pkg-label" th:text="#{pricing.sessions}">Sessions</div>
+                    <div class="pkg-price">EGP 2,750</div>
+                    <div class="pkg-save"><span th:text="#{pricing.save}">Save</span> EGP 250</div>
+                    <a th:href="@{/contact}" class="btn btn-nexus-outline w-100 mt-3" th:text="#{pricing.enquire}">Enquire</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="package-card package-popular">
+                    <div class="pkg-badge-top" th:text="#{pricing.best-value}">Best Value</div>
+                    <div class="pkg-sessions">10</div>
+                    <div class="pkg-label" th:text="#{pricing.sessions}">Sessions</div>
+                    <div class="pkg-price">EGP 5,000</div>
+                    <div class="pkg-save"><span th:text="#{pricing.save}">Save</span> EGP 1,000</div>
+                    <a th:href="@{/contact}" class="btn btn-nexus-cta w-100 mt-3" th:text="#{pricing.enquire}">Enquire</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="package-card">
+                    <div class="pkg-sessions">20</div>
+                    <div class="pkg-label" th:text="#{pricing.sessions}">Sessions</div>
+                    <div class="pkg-price">EGP 9,000</div>
+                    <div class="pkg-save"><span th:text="#{pricing.save}">Save</span> EGP 3,000</div>
+                    <a th:href="@{/contact}" class="btn btn-nexus-outline w-100 mt-3" th:text="#{pricing.enquire}">Enquire</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-8">
+                <div class="p-4 rounded-4" style="background:var(--nexus-off-white);border:1px solid rgba(0,0,0,0.07);">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fa-solid fa-circle-info text-nexus-green me-2"></i>
+                        <span th:text="#{pricing.notes.title}">Important Notes</span>
+                    </h5>
+                    <ul class="small text-muted" style="line-height:2;">
+                        <li th:text="#{pricing.notes.vat}">All prices include VAT.</li>
+                        <li th:text="#{pricing.notes.validity}">Packages are valid for 6 months.</li>
+                        <li th:text="#{pricing.notes.cancel}">Cancellations 24h in advance.</li>
+                        <li th:text="#{pricing.notes.payment}">Cash, Vodafone Cash, bank transfer.</li>
+                        <li th:text="#{pricing.notes.insurance}">Corporate &amp; insurance billing available.</li>
+                    </ul>
+                    <div class="mt-3 d-flex gap-2 flex-wrap">
+                        <a href="https://wa.me/201035411305" target="_blank" class="btn btn-whatsapp btn-sm">
+                            <i class="fa-brands fa-whatsapp me-1"></i>
+                            <span th:text="#{pricing.ask}">Ask About Pricing</span>
+                        </a>
+                        <a th:href="@{/book}" class="btn btn-nexus-outline btn-sm" th:text="#{services.book-now}">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+</html>

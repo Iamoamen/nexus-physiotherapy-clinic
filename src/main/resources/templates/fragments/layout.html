@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="layout(content)"
+      th:lang="${#locale.language}"
+      th:dir="${#locale.language == 'ar' ? 'rtl' : 'ltr'}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${pageTitle ?: 'Nexus Clinic – #MoveBeyond'}">Nexus Clinic</title>
+    <meta name="description" th:content="${metaDescription ?: 'Nexus Clinic – Expert physiotherapy in Heliopolis, Cairo.'}"/>
+    <meta name="keywords" content="physiotherapy cairo, علاج طبيعي مصر الجديدة, sports rehab heliopolis, nexus clinic"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" th:href="${canonicalUrl ?: 'https://nexusclinic.eg' + currentUri}"/>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" th:href="@{/images/logo-icon-black.png}"/>
+    <link rel="apple-touch-icon" th:href="@{/images/logo-icon-black.png}"/>
+
+    <!-- Open Graph -->
+    <meta property="og:title"       th:content="${pageTitle ?: 'Nexus Clinic'}"/>
+    <meta property="og:description" th:content="${metaDescription ?: 'Expert physiotherapy in Cairo'}"/>
+    <meta property="og:image"       th:content="@{/images/logo-full-white.png}"/>
+    <meta property="og:type"        content="website"/>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <!-- Google Fonts: Montserrat + Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/components-extra.css}"/>
+    <link rel="stylesheet" th:href="@{/css/rtl.css}" th:if="${#locale.language == 'ar'}"/>
+    <link rel="stylesheet" th:href="@{/css/nexus-polish.css}"/>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"MedicalBusiness","name":"Nexus Clinic",
+     "telephone":"+20103-5411305","address":{"@type":"PostalAddress","streetAddress":"Heliopolis",
+     "addressLocality":"Cairo","addressCountry":"EG"},"medicalSpecialty":"Physiotherapy",
+     "openingHours":["Mo-Th 09:00-20:00","Fr 09:00-13:00","Sa 09:00-17:00"]}
+    </script>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div th:replace="~{fragments/topbar :: topbar}"></div>
+
+<!-- Navbar -->
+<nav th:replace="~{fragments/navbar :: navbar}"></nav>
+
+<!-- Main Content -->
+<main>
+    <th:block th:replace="${content}"/>
+</main>
+
+<!-- Footer -->
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/201035411305" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

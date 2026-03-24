@@ -1,0 +1,138 @@
+<!-- admin/faqs.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{admin/layout :: adminLayout(adminContent=~{::section#content})}">
+<body>
+<section id="content" th:fragment="adminContent">
+
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-nexus-cta btn-sm" data-bs-toggle="modal" data-bs-target="#faqModal">
+            <i class="fa-solid fa-plus me-1"></i>
+            <span th:text="#{admin.action.add-faq}">Add FAQ</span>
+        </button>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th class="ps-4" th:text="#{admin.col.id}">#</th>
+                    <th th:text="#{admin.col.question-en}">Question (EN)</th>
+                    <th th:text="#{admin.col.question-ar}">Question (AR)</th>
+                    <th th:text="#{admin.col.category}">Category</th>
+                    <th th:text="#{admin.col.order}">Order</th>
+                    <th th:text="#{admin.col.active}">Active</th>
+                    <th th:text="#{admin.col.actions}">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="faq : ${faqs}">
+                    <td class="ps-4 text-muted small" th:text="${faq.id}">1</td>
+                    <td class="fw-bold" style="max-width:200px;" th:text="${#strings.abbreviate(faq.questionEn, 70)}">Q</td>
+                    <td style="max-width:160px;" dir="rtl" th:text="${#strings.abbreviate(faq.questionAr ?: '', 50)}">س</td>
+                    <td>
+                        <span th:if="${faq.category}"
+                              class="badge rounded-pill"
+                              style="background:var(--nexus-green-pale);color:var(--nexus-green-dim);"
+                              th:text="${faq.category}">Cat</span>
+                    </td>
+                    <td th:text="${faq.sortOrder}">0</td>
+                    <td>
+                        <span th:if="${faq.active}" class="badge bg-success" th:text="#{admin.status.active}">Active</span>
+                        <span th:unless="${faq.active}" class="badge bg-secondary" th:text="#{admin.status.hidden}">Hidden</span>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-xs btn-outline-primary" th:title="#{admin.action.edit}"
+                                    data-bs-toggle="modal" data-bs-target="#faqModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <form th:action="@{/admin/faqs/{id}/delete(id=${faq.id})}" method="post">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                <button type="submit" class="btn btn-xs btn-outline-danger"
+                                        th:attr="data-confirm=#{admin.confirm.delete-faq}"
+                                        th:title="#{admin.action.delete}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(faqs)}">
+                    <td colspan="7" class="text-center text-muted py-5" th:text="#{admin.empty.faqs}">No FAQs yet.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="faqModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background:var(--nexus-dark);border-bottom:2px solid var(--nexus-green);">
+                    <h5 class="modal-title text-white">
+                        <i class="fa-solid fa-circle-question me-2 text-nexus-green"></i>
+                        <span th:text="#{admin.modal.add-edit-faq}">Add / Edit FAQ</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/admin/faqs/save}" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <input type="hidden" name="id"/>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label fw-bold" th:text="#{admin.field.question-en}">Question (English) *</label>
+                                <input type="text" name="questionEn" class="form-control nexus-input" required/>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold" th:text="#{admin.field.question-ar}">Question (Arabic) *</label>
+                                <input type="text" name="questionAr" class="form-control nexus-input" required dir="rtl"/>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold" th:text="#{admin.field.answer-en}">Answer (English) *</label>
+                                <textarea name="answerEn" class="form-control nexus-input" rows="4" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold" th:text="#{admin.field.answer-ar}">Answer (Arabic) *</label>
+                                <textarea name="answerAr" class="form-control nexus-input" rows="4" required dir="rtl"></textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" th:text="#{admin.col.category}">Category</label>
+                                <select name="category" class="form-select nexus-input">
+                                    <option value="">General</option>
+                                    <option value="Appointments">Appointments</option>
+                                    <option value="Treatment">Treatment</option>
+                                    <option value="Insurance">Insurance</option>
+                                    <option value="Pricing">Pricing</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" th:text="#{admin.field.sort-order}">Sort Order</label>
+                                <input type="number" name="sortOrder" class="form-control nexus-input" value="0" min="0"/>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" name="active" value="true" checked/>
+                                    <label class="form-check-label fw-bold" th:text="#{admin.field.active-switch}">Active</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" th:text="#{admin.cancel}">Cancel</button>
+                        <button type="submit" class="btn btn-nexus-cta">
+                            <i class="fa-solid fa-floppy-disk me-1"></i>
+                            <span th:text="#{admin.action.save-faq}">Save FAQ</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

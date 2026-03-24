@@ -1,0 +1,156 @@
+<!-- pages/blog-post.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container">
+        <div class="col-lg-9" data-aos="fade-right">
+            <span class="section-tag-light" th:if="${post.category}" th:text="${post.category}">Category</span>
+            <h1 class="page-header-title text-white"
+                th:text="${#locale.language == 'ar' and post.titleAr != null} ? ${post.titleAr} : ${post.titleEn}">Post Title</h1>
+            <div class="d-flex flex-wrap gap-3 align-items-center mt-3">
+                <span class="text-light small" th:if="${post.authorName}">
+                    <i class="fa-solid fa-user-doctor me-1 text-nexus-green"></i>
+                    <span th:text="#{blog.by}">By</span>
+                    <span th:text="${post.authorName}">Author</span>
+                </span>
+                <span class="text-light small" th:if="${post.publishedDate}">
+                    <i class="fa-regular fa-calendar me-1 text-nexus-green"></i>
+                    <span th:text="${#temporals.format(post.publishedDate, 'dd MMMM yyyy')}">Date</span>
+                </span>
+            </div>
+            <nav aria-label="breadcrumb" class="mt-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}" th:text="#{breadcrumb.home}">Home</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/blog}" th:text="#{nav.blog}">Blog</a></li>
+                    <li class="breadcrumb-item active"
+                        th:text="${#locale.language == 'ar' and post.titleAr != null} ? ${post.titleAr} : ${post.titleEn}">Post</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Article -->
+            <div class="col-lg-8" data-aos="fade-right">
+                <img th:if="${post.coverImageUrl}" th:src="${post.coverImageUrl}"
+                     th:alt="${post.titleEn}"
+                     class="img-fluid rounded-4 w-100 mb-4"
+                     style="aspect-ratio:16/9;object-fit:cover;"/>
+
+                <!-- Summary -->
+                <p class="lead text-muted border-start border-3 ps-3 mb-4"
+                   style="border-color:var(--nexus-green)!important;"
+                   th:if="${#locale.language == 'ar' and post.summaryAr != null}"
+                   th:text="${post.summaryAr}">Summary AR</p>
+                <p class="lead text-muted border-start border-3 ps-3 mb-4"
+                   style="border-color:var(--nexus-green)!important;"
+                   th:if="${#locale.language != 'ar' and post.summaryEn != null}"
+                   th:text="${post.summaryEn}">Summary EN</p>
+
+                <!-- Content -->
+                <div class="blog-article-content"
+                     th:utext="${#locale.language == 'ar' and post.contentAr != null} ? ${post.contentAr} : ${post.contentEn}">
+                    <p>Content here.</p>
+                </div>
+
+                <!-- Share -->
+                <div class="mt-5 p-4 rounded-4 d-flex align-items-center justify-content-between flex-wrap gap-3"
+                     style="background:var(--nexus-off-white);">
+                    <strong th:text="#{blog.share}">Share this article</strong>
+                    <div class="d-flex gap-2">
+                        <a th:href="'https://wa.me/?text=https://nexusclinic.eg/blog/' + ${post.slug}"
+                           target="_blank" class="btn btn-sm btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp me-1"></i>
+                            <span th:text="#{topbar.whatsapp}">WhatsApp</span>
+                        </a>
+                        <a th:href="'https://www.facebook.com/sharer/sharer.php?u=https://nexusclinic.eg/blog/' + ${post.slug}"
+                           target="_blank" class="btn btn-sm btn-outline-primary">
+                            <i class="fa-brands fa-facebook-f me-1"></i>Share
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-4 p-5 rounded-4 text-center"
+                     style="background:var(--nexus-dark);border:1px solid rgba(57,211,83,0.2);">
+                    <h4 class="text-white mb-2" th:text="#{cta.title}">#MoveBeyond</h4>
+                    <p class="text-light small mb-3" th:text="#{cta.text}">Take the first step.</p>
+                    <a th:href="@{/book}" class="btn btn-nexus-cta">
+                        <i class="fa-regular fa-calendar-check me-2"></i>
+                        <span th:text="#{nav.book}">Book Appointment</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4" data-aos="fade-left">
+                <div class="booking-info-card mb-4">
+                    <h6 class="fw-bold mb-3">
+                        <i class="fa-regular fa-calendar-check text-nexus-green me-2"></i>
+                        <span th:text="#{nav.book}">Book a Session</span>
+                    </h6>
+                    <a th:href="@{/book}" class="btn btn-nexus-cta w-100 mb-2">
+                        <span th:text="#{nav.book}">Book Appointment</span>
+                    </a>
+                    <a href="tel:+201035411305" class="btn btn-outline-secondary w-100">
+                        <i class="fa-solid fa-phone me-1"></i>0103 541 1305
+                    </a>
+                </div>
+
+                <div class="booking-info-card mb-4">
+                    <h6 class="fw-bold mb-3">
+                        <i class="fa-solid fa-list text-nexus-green me-2"></i>
+                        <span th:text="#{nav.services}">Our Services</span>
+                    </h6>
+                    <ul class="footer-links">
+                        <li><a th:href="@{/services/sports-rehabilitation}" th:text="#{nav.sports-rehab}">Sports Rehab</a></li>
+                        <li><a th:href="@{/services/manual-therapy}" th:text="#{nav.manual-therapy}">Manual Therapy</a></li>
+                        <li><a th:href="@{/services/chronic-pain-management}" th:text="#{nav.chronic-pain}">Chronic Pain</a></li>
+                        <li><a th:href="@{/services/performance-training}" th:text="#{nav.performance}">Performance</a></li>
+                        <li><a th:href="@{/services}" class="text-nexus-green fw-bold" th:text="#{services.view-all}">View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="booking-info-card">
+                    <h6 class="fw-bold mb-3">
+                        <i class="fa-brands fa-instagram text-nexus-green me-2"></i>
+                        Instagram
+                    </h6>
+                    <a href="https://instagram.com/nexus.physioclinic" target="_blank"
+                       class="btn btn-nexus-outline w-100">
+                        <i class="fa-brands fa-instagram me-1"></i>@nexus.physioclinic
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.blog-article-content { line-height:1.85; color:var(--nexus-text); }
+.blog-article-content h2 { font-size:1.5rem; font-weight:700; margin:32px 0 12px; }
+.blog-article-content h3 { font-size:1.2rem; font-weight:700; margin:24px 0 10px; }
+.blog-article-content p  { margin-bottom:16px; }
+.blog-article-content ul,
+.blog-article-content ol { padding-left:24px; margin-bottom:16px; }
+.blog-article-content li { margin-bottom:6px; }
+.blog-article-content img { max-width:100%; border-radius:12px; margin:16px 0; }
+.blog-article-content blockquote {
+    border-left:4px solid var(--nexus-green); padding:12px 20px;
+    background:var(--nexus-off-white); border-radius:0 8px 8px 0;
+    font-style:italic; margin:24px 0;
+}
+html[dir="rtl"] .blog-article-content { text-align:right; }
+html[dir="rtl"] .blog-article-content blockquote { border-left:none; border-right:4px solid var(--nexus-green); border-radius:8px 0 0 8px; }
+html[dir="rtl"] .blog-article-content ul,
+html[dir="rtl"] .blog-article-content ol { padding-left:0; padding-right:24px; }
+</style>
+
+</main>
+</html>

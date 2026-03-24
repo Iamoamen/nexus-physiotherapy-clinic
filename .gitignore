@@ -1,0 +1,26 @@
+# Maven
+target/
+*.class
+*.jar
+
+# Spring Boot
+*.log
+logs/
+
+# Environment / secrets — NEVER commit these
+.env
+application-prod.properties
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.eclipse/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploaded images (large binary files)
+src/main/resources/static/images/uploads/

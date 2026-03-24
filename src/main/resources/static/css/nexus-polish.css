@@ -1,0 +1,488 @@
+/* ============================================================
+   NEXUS CLINIC – nexus-polish.css
+   Underline removal, RTL polish, Arabic font, final fixes
+============================================================ */
+
+/* ============================================================
+   1. GLOBAL – Strip all unwanted underlines
+============================================================ */
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  text-decoration: none !important;
+}
+
+/* Re-allow underlines only for inline body-text links */
+.prose-link,
+.allow-underline {
+  text-decoration: underline !important;
+}
+
+/* Bootstrap overrides – remove default underlines */
+.nav-link:hover,
+.dropdown-item:hover,
+.breadcrumb-item a:hover {
+  text-decoration: none !important;
+}
+
+/* Admin table contact links */
+.admin-table-link,
+table a {
+  text-decoration: none !important;
+}
+
+table a:hover {
+  text-decoration: underline !important;
+  color: var(--nexus-green);
+}
+
+/* ============================================================
+   2. BUTTONS – Ensure no underline, consistent cursor
+============================================================ */
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active,
+button {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.admin-nav-link,
+.admin-nav-link:hover,
+.admin-nav-link:focus {
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   3. NAVBAR & TOPBAR – No underlines
+============================================================ */
+.navbar-brand,
+.navbar-brand:hover,
+.nav-link,
+.nav-link:hover,
+.dropdown-item,
+.dropdown-item:hover {
+  text-decoration: none !important;
+}
+
+.topbar-link,
+.topbar-link:hover {
+  text-decoration: none !important;
+}
+
+.lang-toggle,
+.lang-toggle:hover,
+.lang-toggle-mobile,
+.lang-toggle-mobile:hover {
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   4. FOOTER – No underlines on footer links
+============================================================ */
+.footer-links a,
+.footer-links a:hover,
+.footer-contact a,
+.footer-contact a:hover,
+.footer-bottom-links a,
+.footer-bottom-links a:hover,
+.footer-brand,
+.footer-brand:hover {
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   5. CARDS & COMPONENTS – No underlines
+============================================================ */
+.service-link,
+.service-link:hover,
+.blog-link,
+.blog-link:hover,
+.condition-card,
+.condition-card:hover,
+.contact-link,
+.contact-link:hover,
+.whatsapp-link,
+.whatsapp-link:hover {
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   6. ARABIC FONT – Apply Cairo to all text in RTL mode
+============================================================ */
+/* RTL font override — explicitly excludes Font Awesome <i> tags */
+html[dir="rtl"] body,
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
+html[dir="rtl"] h4, html[dir="rtl"] h5, html[dir="rtl"] h6,
+html[dir="rtl"] p, html[dir="rtl"] span, html[dir="rtl"] a,
+html[dir="rtl"] button, html[dir="rtl"] input, html[dir="rtl"] select,
+html[dir="rtl"] textarea, html[dir="rtl"] label,
+html[dir="rtl"] .nav-link, html[dir="rtl"] .btn,
+html[dir="rtl"] .form-label, html[dir="rtl"] .section-tag,
+html[dir="rtl"] .section-title, html[dir="rtl"] .section-text,
+html[dir="rtl"] .section-subtitle {
+  font-family: 'Cairo', 'Montserrat', sans-serif !important;
+  letter-spacing: 0 !important;
+}
+/* Never override Font Awesome icon elements */
+html[dir="rtl"] i[class*="fa-"],
+html[dir="rtl"] .fa, html[dir="rtl"] .fas,
+html[dir="rtl"] .far, html[dir="rtl"] .fab, html[dir="rtl"] .fal {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+  font-weight: 900;
+}
+
+/* Section tags: remove letter-spacing in Arabic */
+html[dir="rtl"] .section-tag,
+html[dir="rtl"] .section-tag-light {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+/* Trust labels */
+html[dir="rtl"] .trust-label,
+html[dir="rtl"] .trust-bar-text {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* ============================================================
+   7. RTL FORM INPUTS – Right-aligned text
+============================================================ */
+html[dir="rtl"] .nexus-input,
+html[dir="rtl"] .form-control,
+html[dir="rtl"] .form-select {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] .form-label {
+  display: block;
+  text-align: right;
+}
+
+html[dir="rtl"] .form-check {
+  padding-right: 1.5em;
+  padding-left: 0;
+}
+
+html[dir="rtl"] .form-check-input {
+  float: right;
+  margin-right: -1.5em;
+  margin-left: 0;
+}
+
+html[dir="rtl"] .form-switch .form-check-input {
+  margin-right: -2.5em;
+}
+
+html[dir="rtl"] .form-text,
+html[dir="rtl"] .invalid-feedback,
+html[dir="rtl"] .valid-feedback {
+  text-align: right;
+}
+
+/* ============================================================
+   8. RTL FLEXBOX & SPACING FIXES
+============================================================ */
+html[dir="rtl"] .me-1 { margin-right: 0 !important; margin-left: 0.25rem !important; }
+html[dir="rtl"] .me-2 { margin-right: 0 !important; margin-left: 0.5rem !important; }
+html[dir="rtl"] .me-3 { margin-right: 0 !important; margin-left: 1rem !important; }
+html[dir="rtl"] .ms-1 { margin-left: 0 !important; margin-right: 0.25rem !important; }
+html[dir="rtl"] .ms-2 { margin-left: 0 !important; margin-right: 0.5rem !important; }
+html[dir="rtl"] .ms-3 { margin-left: 0 !important; margin-right: 1rem !important; }
+html[dir="rtl"] .ms-auto { margin-left: 0 !important; margin-right: auto !important; }
+html[dir="rtl"] .me-auto { margin-right: 0 !important; margin-left: auto !important; }
+html[dir="rtl"] .ps-4 { padding-right: 1.5rem !important; padding-left: 0 !important; }
+html[dir="rtl"] .pe-4 { padding-left: 1.5rem !important; padding-right: 0 !important; }
+
+/* ============================================================
+   9. RTL NAVBAR
+============================================================ */
+html[dir="rtl"] #navbarMain .navbar-nav {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+
+html[dir="rtl"] .navbar-nav .ms-lg-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+
+html[dir="rtl"] .dropdown-menu {
+  left: auto !important;
+  right: 0 !important;
+  text-align: right;
+}
+
+/* ============================================================
+   10. RTL ADMIN SIDEBAR
+============================================================ */
+/* admin-wrapper: do NOT reverse — sidebar stays left */
+
+html[dir="rtl"] .admin-sidebar {
+  right: 0;
+  left: auto !important;
+  border-right: none;
+  border-left: 1px solid rgba(57,211,83,0.15);
+}
+
+@media (max-width: 991.98px) {
+  html[dir="rtl"] .admin-sidebar {
+    right: -260px !important;
+    left: auto !important;
+  }
+  html[dir="rtl"] .admin-sidebar.show {
+    right: 0 !important;
+    left: auto !important;
+  }
+}
+
+/* admin-nav-link RTL: no row-reverse — icon stays left, text right */
+
+/* icon spacing in admin-enhanced.css */
+
+html[dir="rtl"] .admin-nav-link .ms-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+html[dir="rtl"] .admin-topbar {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .admin-topbar .d-flex.align-items-center.gap-3:first-child {
+  flex-direction: row-reverse;
+}
+
+/* ============================================================
+   11. RTL TABLE
+============================================================ */
+html[dir="rtl"] .table th,
+html[dir="rtl"] .table td {
+  text-align: right;
+}
+
+html[dir="rtl"] .table th:first-child,
+html[dir="rtl"] .table td:first-child {
+  padding-right: 1.5rem !important;
+  padding-left: 0.5rem !important;
+}
+
+/* ============================================================
+   12. RTL MODAL
+============================================================ */
+html[dir="rtl"] .modal-header {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .modal-footer {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .modal-body .row .col-md-6:first-child {
+  /* ensure label aligns right */
+}
+
+/* ============================================================
+   13. RTL ALERT & BADGE
+============================================================ */
+html[dir="rtl"] .alert {
+  text-align: right;
+}
+
+html[dir="rtl"] .alert i.me-2 {
+  margin-right: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+html[dir="rtl"] .breadcrumb {
+  justify-content: center;
+  direction: rtl;
+}
+
+html[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  float: right;
+  padding-right: 0;
+  padding-left: 0.5rem;
+  content: "/";
+}
+
+/* ============================================================
+   14. RTL HERO SECTION
+============================================================ */
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .hero-subtitle,
+html[dir="rtl"] .hero-badge,
+html[dir="rtl"] .hero-cta-group,
+html[dir="rtl"] .hero-trust {
+  text-align: right;
+}
+
+html[dir="rtl"] .hero-trust {
+  justify-content: flex-end;
+}
+
+html[dir="rtl"] .hero-cta-group .me-3 {
+  margin-right: 0 !important;
+  margin-left: 1rem !important;
+}
+
+/* ============================================================
+   15. RTL FOOTER
+============================================================ */
+html[dir="rtl"] .footer-bottom {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .footer-contact li {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+html[dir="rtl"] .footer-contact li i {
+  margin-right: 0 !important;
+  margin-left: 0.75rem !important;
+}
+
+html[dir="rtl"] .footer-social {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .footer-links a:hover {
+  padding-left: 0;
+  padding-right: 4px;
+}
+
+/* ============================================================
+   16. RTL ABOUT SECTION
+============================================================ */
+html[dir="rtl"] .about-feature {
+  border-left: none !important;
+  border-right: 3px solid var(--nexus-green) !important;
+  padding-right: 12px;
+  padding-left: 0;
+}
+
+html[dir="rtl"] .about-badge {
+  right: auto !important;
+  left: -20px;
+}
+
+/* ============================================================
+   17. RTL BOOKING & CONTACT FORMS
+============================================================ */
+html[dir="rtl"] .booking-info-card .working-hours-list li {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .booking-card-header {
+  text-align: right;
+}
+
+html[dir="rtl"] .booking-card-header i {
+  margin-right: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+/* ============================================================
+   18. RTL PROCESS STEPS
+============================================================ */
+html[dir="rtl"] .process-step {
+  direction: rtl;
+}
+
+/* ============================================================
+   19. RTL SWIPER (testimonials)
+============================================================ */
+html[dir="rtl"] .swiper-button-next,
+html[dir="rtl"] .swiper-button-prev {
+  transform: scaleX(-1);
+}
+
+/* ============================================================
+   20. RTL PAGINATION
+============================================================ */
+html[dir="rtl"] .card-footer .d-flex.gap-1 i.fa-chevron-left,
+html[dir="rtl"] .card-footer .d-flex.gap-1 i.fa-chevron-right {
+  transform: scaleX(-1);
+}
+
+/* ============================================================
+   21. SECTION TAG – Arabic uppercase removal
+============================================================ */
+html[dir="rtl"] .section-tag,
+html[dir="rtl"] .section-tag-light {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   22. LOGO SCALING
+============================================================ */
+.navbar-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.admin-sidebar-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 576px) {
+  .navbar-logo { height: 26px; }
+  .footer-logo { height: 32px; }
+}
+
+/* ============================================================
+   23. WHATSAPP FLOAT – RTL flip
+============================================================ */
+html[dir="rtl"] .whatsapp-float {
+  right: auto !important;
+  left: 28px !important;
+}
+
+/* ============================================================
+   24. SERVICE LINK ARROW – RTL flip
+============================================================ */
+html[dir="rtl"] .service-link {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+html[dir="rtl"] .fa-arrow-right {
+  transform: scaleX(-1);
+  display: inline-block;
+}
+
+/* ============================================================
+   25. ADMIN – Additional table polish
+============================================================ */
+.btn-xs {
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Admin badge status colors */
+.badge-pending   { background: rgba(255,152,0,0.15);  color: #e65100; }
+.badge-confirmed { background: rgba(76,175,80,0.15);  color: #1b5e20; }
+.badge-completed { background: rgba(33,150,243,0.15); color: #0d47a1; }
+.badge-cancelled { background: rgba(244,67,54,0.15);  color: #b71c1c; }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="topbar" class="topbar d-none d-md-block">
+    <div class="container">
+        <div class="row align-items-center py-2">
+            <div class="col-md-6 topbar-left">
+                <a href="tel:+201035411305" class="topbar-link me-3">
+                    <i class="fa-solid fa-phone me-1"></i>
+                    <span>0103 541 1305</span>
+                </a>
+                <a href="https://wa.me/201035411305" target="_blank" class="topbar-link">
+                    <i class="fa-brands fa-whatsapp me-1"></i>
+                    <span th:text="#{topbar.whatsapp}">WhatsApp</span>
+                </a>
+            </div>
+            <div class="col-md-6 topbar-right text-md-end">
+                <span class="topbar-text me-3">
+                    <i class="fa-regular fa-clock me-1"></i>
+                    <span th:text="#{topbar.hours}">Mon–Thu: 9AM–8PM</span>
+                </span>
+                <span class="lang-switcher ms-2">
+                    <a th:href="@{/(lang=en)}" th:classappend="${#locale.language == 'en'} ? 'lang-active'" class="lang-toggle" title="English">EN</a>
+                    <span class="text-muted mx-1">|</span>
+                    <a th:href="@{/(lang=ar)}" th:classappend="${#locale.language == 'ar'} ? 'lang-active'" class="lang-toggle" title="العربية">ع</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

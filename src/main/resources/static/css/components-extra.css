@@ -1,0 +1,275 @@
+/* ============================================================
+   NEXUS CLINIC – components-extra.css
+   Additional component styles: pricing, error pages, admin extras
+   Include this AFTER main.css in layout.html
+============================================================ */
+
+/* ============================================================
+   PRICING CARDS
+============================================================ */
+.pricing-card {
+  background: var(--nexus-white);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 100%;
+  transition: var(--transition);
+  position: relative;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(57,211,83,0.25);
+}
+
+.pricing-featured {
+  border: 2px solid var(--nexus-green);
+  transform: scale(1.02);
+}
+.pricing-featured:hover { transform: scale(1.02) translateY(-8px); }
+
+.pricing-badge {
+  background: var(--nexus-green);
+  color: var(--nexus-black);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 6px;
+}
+
+.pricing-header {
+  background: var(--nexus-dark);
+  padding: 28px 24px 20px;
+  text-align: center;
+}
+
+.pricing-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.pricing-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--nexus-white);
+  margin-bottom: 6px;
+}
+
+.pricing-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+}
+
+.pricing-body {
+  padding: 24px;
+}
+
+.pricing-price {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.price-currency {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--nexus-text-light);
+  vertical-align: top;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.price-amount {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--nexus-text);
+  line-height: 1;
+  margin: 0 4px;
+}
+
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.pricing-features li {
+  font-size: 0.88rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+}
+.pricing-features li:last-child { border: none; }
+
+/* ---- Package Cards ---- */
+.package-card {
+  background: var(--nexus-white);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  padding: 32px 20px;
+  text-align: center;
+  height: 100%;
+  transition: var(--transition);
+  position: relative;
+}
+.package-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.package-popular {
+  border: 2px solid var(--nexus-green);
+  background: var(--nexus-dark);
+}
+
+.pkg-badge-top {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--nexus-green);
+  color: var(--nexus-black);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 0 0 8px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+}
+
+.pkg-sessions {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--nexus-green);
+  line-height: 1;
+}
+
+.pkg-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--nexus-text-light);
+  margin-bottom: 16px;
+}
+.package-popular .pkg-label { color: rgba(255,255,255,0.55); }
+
+.pkg-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--nexus-text);
+  margin-bottom: 4px;
+}
+.package-popular .pkg-price { color: var(--nexus-white); }
+
+.pkg-save {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--nexus-green);
+  background: var(--nexus-green-pale);
+  border: 1px solid var(--nexus-border);
+  padding: 3px 12px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+/* ============================================================
+   ERROR PAGES
+============================================================ */
+.error-number {
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 900;
+  color: var(--nexus-green-pale);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--nexus-green-pale) 0%, rgba(57,211,83,0.05) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   ADMIN EXTRAS
+============================================================ */
+.btn-xs {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  border-radius: 5px;
+}
+
+.fw-700 { font-weight: 700 !important; }
+.fw-800 { font-weight: 800 !important; }
+.fw-900 { font-weight: 900 !important; }
+
+/* Admin status badge colours */
+.badge-no_show {
+  background: #e9ecef;
+  color: #495057;
+}
+
+/* Improved admin table row hover */
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: rgba(57,211,83,0.04);
+}
+
+/* Admin form headings */
+.admin-section-divider {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--nexus-text-light);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding-bottom: 8px;
+  margin: 20px 0 14px;
+}
+
+/* ============================================================
+   WHATSAPP FLOAT — RTL variant
+============================================================ */
+html[dir="rtl"] .whatsapp-float {
+  right: auto;
+  left: 28px;
+}
+
+/* ============================================================
+   NAVBAR — Active state line under nav item
+============================================================ */
+.nexus-navbar .nav-link.active {
+  color: var(--nexus-green) !important;
+  position: relative;
+}
+.nexus-navbar .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: var(--nexus-green);
+  border-radius: 1px;
+}
+
+/* ============================================================
+   MOBILE IMPROVEMENTS
+============================================================ */
+@media (max-width: 575.98px) {
+  .pricing-card .price-amount { font-size: 2.5rem; }
+  .pkg-sessions              { font-size: 3rem; }
+  .error-number              { font-size: 7rem; }
+  .process-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-trust .trust-item    { flex: 1 0 40%; }
+}

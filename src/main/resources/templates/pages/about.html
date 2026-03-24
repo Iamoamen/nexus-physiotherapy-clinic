@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{::main})}">
+<body>
+<main th:fragment="content">
+
+<section class="page-header">
+    <div class="container text-center">
+        <span class="section-tag-light" th:text="#{about.page.tag}">Our Story</span>
+        <h1 class="page-header-title text-white" th:text="#{about.page.title}">About Nexus Clinic</h1>
+        <p class="page-header-subtitle text-light" th:text="#{about.page.subtitle2}">Clear. Focused. Individualized.</p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <img src="/images/about-clinic.jpg" alt="About Nexus Clinic"
+                     class="img-fluid rounded-4 shadow-lg" style="aspect-ratio:4/3;object-fit:cover;"/>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <span class="section-tag" th:text="#{about.who-we-are}">Who We Are</span>
+                <h2 class="section-title" th:text="#{about.built-around}">Built Around Your Recovery</h2>
+                <p class="section-text" th:text="#{about.p3}">Nexus Clinic was founded...</p>
+                <p class="section-text" th:text="#{about.p4}">We partner with...</p>
+                <p class="section-text" th:text="#{about.p5}">Whether you are a professional...</p>
+                <div class="d-flex gap-3 mt-4 flex-wrap">
+                    <a th:href="@{/book}" class="btn btn-nexus-cta" th:text="#{about.btn.book}">Book Assessment</a>
+                    <a th:href="@{/team}" class="btn btn-nexus-outline" th:text="#{about.btn.team}">Meet Our Team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light-dark">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-tag" th:text="#{about.values.tag}">Our Values</span>
+            <h2 class="section-title" th:text="#{about.values.title}">What Drives Us</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="why-card" style="background:#fff;border-color:rgba(0,0,0,0.07);">
+                    <div class="why-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h4 style="color:var(--nexus-text);" th:text="#{about.v1.title}">Evidence-Based</h4>
+                    <p style="color:var(--nexus-text-light);" th:text="#{about.v1.text}">Every treatment decision...</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-card" style="background:#fff;border-color:rgba(0,0,0,0.07);">
+                    <div class="why-icon"><i class="fa-solid fa-person"></i></div>
+                    <h4 style="color:var(--nexus-text);" th:text="#{about.v2.title}">Patient-Centered</h4>
+                    <p style="color:var(--nexus-text-light);" th:text="#{about.v2.text}">Your goals...</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="why-card" style="background:#fff;border-color:rgba(0,0,0,0.07);">
+                    <div class="why-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h4 style="color:var(--nexus-text);" th:text="#{about.v3.title}">Results-Focused</h4>
+                    <p style="color:var(--nexus-text-light);" th:text="#{about.v3.text}">We measure outcomes...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section section-padding" th:if="${not #lists.isEmpty(therapists)}">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-tag" th:text="#{team.tag}">Meet the Experts</span>
+            <h2 class="section-title" th:text="#{team.title}">Our Therapists</h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div th:each="therapist : ${therapists}" class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="team-card">
+                    <div class="team-photo-wrapper">
+                        <img th:src="${therapist.photoUrl ?: '/images/placeholder-therapist.jpg'}"
+                             th:alt="${therapist.nameEn}" class="team-photo"/>
+                    </div>
+                    <div class="team-info">
+                        <h4 class="team-name" th:text="${#locale.language == 'ar'} ? ${therapist.nameAr} : ${therapist.nameEn}">Name</h4>
+                        <p class="team-title" th:text="${#locale.language == 'ar'} ? ${therapist.titleAr} : ${therapist.titleEn}">Title</p>
+                        <span class="team-spec" th:text="${therapist.specialization}">Spec</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a th:href="@{/team}" class="btn btn-nexus-outline" th:text="#{team.view-all}">Meet the Full Team</a>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section section-padding">
+    <div class="container">
+        <div class="cta-box text-center" data-aos="zoom-in">
+            <span class="section-tag" th:text="#{cta.tag}">Ready to Start?</span>
+            <h2 class="cta-title" th:text="#{cta.title}">#MoveBeyond Starts Today</h2>
+            <p class="cta-text" th:text="#{cta.text}">Take the first step.</p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <a th:href="@{/book}" class="btn btn-nexus-cta btn-lg">
+                    <i class="fa-regular fa-calendar-check me-2"></i>
+                    <span th:text="#{cta.book}">Book Appointment</span>
+                </a>
+                <a href="tel:+201035411305" class="btn btn-outline-dark btn-lg">
+                    <i class="fa-solid fa-phone me-2"></i>0103 541 1305
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+</html>

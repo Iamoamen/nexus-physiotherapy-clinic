@@ -1,0 +1,35 @@
+# Build artifacts (not needed — multi-stage build handles this internally)
+target/
+*.class
+*.jar
+
+# Source (not copied in final stage)
+src/
+
+# Secrets — NEVER in Docker image
+.env
+*.env
+application-prod.properties
+application-local.properties
+
+# Dev tools
+.git/
+.gitignore
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Docs
+*.md
+docs/
+nginx/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
